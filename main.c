@@ -6,7 +6,7 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:45:22 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/11/28 15:59:10 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/11/28 17:04:50 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,12 @@ int	main(void)
 	c = 'y';
 	s = "Sync in inky";
 	printf("%c\n", *ft_strrchr(c, s));
+
+	printf("\n%s\n", "isascii");
+	c = 97;
+	printf("%d\n", ft_isascii(c));
+	c = 210;
+        printf("%d\n", ft_isascii(c));
 
 	return (0);
 }

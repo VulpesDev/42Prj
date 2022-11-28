@@ -13,7 +13,7 @@
 #include <stdio.h>
 #include "libft.h"
 
-char*	ft_strrchr(char c, char* s)
+char*	ft_strrchr(char c, const char* s)
 {
 	char*	result;
 	char	r;
