@@ -6,11 +6,12 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:45:22 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/11/29 18:03:43 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/11/29 18:39:35 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<stdio.h>
+#include<strings.h>
 #include "libft.h"
 
 int	main(void)
@@ -98,5 +99,18 @@ int	main(void)
 	printf("\n%s\n", "memset");
 	ft_memset(str, '.', 3*sizeof(char));
 	printf("%s\n", str);
-	return (0);
+
+	printf("\n%s\n", "bzero");
+	char	buffer[50] = "Hello brothers!";
+	printf("Before: %s\n", buffer);
+	ft_bzero(buffer, 1*sizeof(char));
+	printf("After: %s\n", buffer);
+
+	printf("\n%s\n", "memcpy");
+	char	dest[50];
+	char	src[50] = "Hello OOOOO";
+	ft_memcpy(dest, src, 5 * sizeof(char));
+	printf("%s\n", dest);
+
+	return(0);
 }
