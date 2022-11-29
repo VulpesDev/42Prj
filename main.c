@@ -6,7 +6,7 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:45:22 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/11/28 17:04:50 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/11/29 18:03:43 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	main(void)
 {
 	char	c;
-	char*	s;
+	char	*s;
 
 	printf("\n%s\n", "isalpha");
 	c = '1';
@@ -88,5 +88,15 @@ int	main(void)
 	c = 210;
         printf("%d\n", ft_isascii(c));
 
+	printf("\n%s\n", "strlen");
+	s = "Forest"; // should be 6
+	printf("%ld\n", ft_strlen(s));
+	s = "Mountain"; // should be 8
+	printf("%ld\n", ft_strlen(s));
+
+	char	str[50] = "Multi Very What";
+	printf("\n%s\n", "memset");
+	ft_memset(str, '.', 3*sizeof(char));
+	printf("%s\n", str);
 	return (0);
 }

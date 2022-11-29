@@ -1,40 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 15:16:30 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/11/29 17:52:07 by tvasilev         ###   ########.fr       */
+/*   Created: 2022/11/29 17:39:25 by tvasilev          #+#    #+#             */
+/*   Updated: 2022/11/29 17:57:10 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
 
-# include <stddef.h>
+void	*ft_memset(void *s, int c, size_t n)
+{
+	size_t	i;
+	unsigned char	*p = s;
 
-char	*ft_strchr(char c, const char *s);
-
-char	*ft_strrchr(char c, const char *s);
-
-int		ft_isalpha(int c);
-
-int		ft_isdigit(int c);
-
-int		ft_isalnum(int c);
-
-int		ft_isprint(int c);
-
-int		ft_tolower(int c);
-
-int		ft_toupper(int c);
-
-int		ft_isascii(int c);
-
-size_t	ft_strlen(const char *s);
-
-void	*ft_memset(void *s, int c, size_t n);
-
-#endif
+	i = 0;
+	while (*p && i < n)
+	{
+		p[i] = c;
+		i++;
+	}
+	return (s);
+}

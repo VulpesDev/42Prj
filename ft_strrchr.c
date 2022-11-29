@@ -6,18 +6,18 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 14:48:32 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/11/28 15:43:06 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/11/29 17:33:04 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "libft.h"
 
-char*	ft_strrchr(char c, const char* s)
+char	*ft_strrchr(char c, const char	*s)
 {
-	char*	result;
+	char	*result;
 	char	r;
-	int	i;
+	int		i;
 
 	i = 0;
 	r = '\0';
@@ -31,6 +31,4 @@ char*	ft_strrchr(char c, const char* s)
 		i++;
 	}
 	return (result);
-
 }
-

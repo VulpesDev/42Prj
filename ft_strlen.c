@@ -1,40 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 15:16:30 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/11/29 17:52:07 by tvasilev         ###   ########.fr       */
+/*   Created: 2022/11/29 17:10:10 by tvasilev          #+#    #+#             */
+/*   Updated: 2022/11/29 17:30:23 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
+#include <stddef.h>
 
-# include <stddef.h>
+size_t	ft_strlen(const char *s)
+{
+	size_t	result;
 
-char	*ft_strchr(char c, const char *s);
-
-char	*ft_strrchr(char c, const char *s);
-
-int		ft_isalpha(int c);
-
-int		ft_isdigit(int c);
-
-int		ft_isalnum(int c);
-
-int		ft_isprint(int c);
-
-int		ft_tolower(int c);
-
-int		ft_toupper(int c);
-
-int		ft_isascii(int c);
-
-size_t	ft_strlen(const char *s);
-
-void	*ft_memset(void *s, int c, size_t n);
-
-#endif
+	result = 0;
+	while (s[result] != '\0')
+		result++;
+	return (result);
+}
