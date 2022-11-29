@@ -6,7 +6,7 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:45:22 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/11/29 18:39:35 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/11/29 19:07:08 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,11 @@ int	main(void)
 	char	src[50] = "Hello OOOOO";
 	ft_memcpy(dest, src, 5 * sizeof(char));
 	printf("%s\n", dest);
-
+	
+	printf("\n%s\n", "memmove");
+	char	dest1[50];
+	char	src1[50] = "OooooHHHHhhh";
+	ft_memmove(dest1, src1, 10 * sizeof(char));
+	printf("%s\n", dest1);
 	return(0);
 }
