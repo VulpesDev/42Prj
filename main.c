@@ -6,7 +6,7 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:45:22 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/11/30 12:42:28 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/11/30 12:53:11 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,11 @@ int	main(void)
 	printf("Src: %s\n", src2 + 1);
 	memmove(src2, src2 + 1, 5);
 	printf("Dest: %s\n", src2);
-	return(0);
+
+	printf("\n%s\n", "strncmp");
+	char	s1[50] = "Helao";
+	char	s2[50] = "Helao";
+	printf("%d\n", ft_strncmp(s1, s2, 4));
+
+	return (0);
 }
