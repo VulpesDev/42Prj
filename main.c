@@ -6,12 +6,13 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:45:22 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/11/29 19:07:08 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/11/30 12:42:28 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<stdio.h>
 #include<strings.h>
+#include<string.h>
 #include "libft.h"
 
 int	main(void)
@@ -113,9 +114,9 @@ int	main(void)
 	printf("%s\n", dest);
 	
 	printf("\n%s\n", "memmove");
-	char	dest1[50];
-	char	src1[50] = "OooooHHHHhhh";
-	ft_memmove(dest1, src1, 10 * sizeof(char));
-	printf("%s\n", dest1);
+	char	src2[50] = "Hello";
+	printf("Src: %s\n", src2 + 1);
+	memmove(src2, src2 + 1, 5);
+	printf("Dest: %s\n", src2);
 	return(0);
 }
