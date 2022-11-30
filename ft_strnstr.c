@@ -1,29 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/30 12:43:36 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/11/30 13:47:31 by tvasilev         ###   ########.fr       */
+/*   Created: 2022/11/30 15:16:33 by tvasilev          #+#    #+#             */
+/*   Updated: 2022/11/30 16:55:18 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	are_same(const char *big, const char *lit, size_t pos)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < n && s1[i] && s2[i])
+	while (lit[i] != '\0')
 	{
-		if (s1[i] == s2[i])
-			;
-		else
-			return (s1[i] - s2[i]);
+		if (lit[i] != big[pos])
+			return (0);
+		pos++;
 		i++;
 	}
-	return (0);
+	return (1);
+}
+
+char	*ft_strnstr(const char *big, const char *little, size_t len)
+{
+	size_t	i;
+
+	i = 0;
+	if (*little == '\0')
+		return (char *)(big);
+	while (big[i] && i < len)
+	{
+		if (big[i] == little[0])
+		{
+			if (are_same(big, little, i))
+				return (char *)(&big[i]);
+		}
+		i++;
+	}
+	return ((void *)0);
 }

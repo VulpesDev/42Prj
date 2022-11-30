@@ -6,7 +6,7 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:45:22 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/11/30 12:53:11 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/11/30 17:25:09 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,5 +124,16 @@ int	main(void)
 	char	s2[50] = "Helao";
 	printf("%d\n", ft_strncmp(s1, s2, 4));
 
+	printf("\n%s\n", "memchr");
+	char	what[50] = "Hello";
+	printf("Actual memory:%p\n", &what[2]);
+	printf("Memory found:%p\n", ft_memchr(what, 'l', 5));
+
+	printf("\n%s\n", "strnstr");
+	const char largestring[20] = "Foo Bar Baz";
+	const char smallstring[20] = "Bar";
+	char *ptr;
+	ptr = ft_strnstr(largestring, smallstring, 20);
+	printf("%s\n", ptr ? ptr :"0");
 	return (0);
 }
