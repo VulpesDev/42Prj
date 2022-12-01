@@ -6,7 +6,7 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:45:22 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/01 12:14:40 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/01 14:55:21 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,9 +136,16 @@ int	main(void)
 	ptr = ft_strnstr(largestring, smallstring, 20);
 	printf("%s\n", ptr ? ptr :"0");
 
-	printf("\n%s\n", "strcpy");
+	printf("\n%s\n", "strlcpy");
 	char dest10[50];
 	char src10[50] = "Hello!";
-	printf("%s\n", ft_strcpy(dest10, src10));
+	printf("%ld\n", ft_strlcpy(dest10, src10, 6));
+	printf("%s\n", dest10);
+
+	printf("\n%s\n", "strlcat");
+	char dest20[50] = "Hello ";
+	char src20[50] = "World!";
+	printf("%ld\n", ft_strlcat(dest20, src20, 7));
+	printf("%s\n", dest20);
 	return (0);
 }
