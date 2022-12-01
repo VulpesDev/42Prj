@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/01 11:50:55 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/01 12:14:57 by tvasilev         ###   ########.fr       */
+/*   Created: 2022/12/01 14:32:47 by tvasilev          #+#    #+#             */
+/*   Updated: 2022/12/01 14:37:34 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include "libft.h"
 
-char	*ft_strcpy(char *dest, const char *src)
+size_t	*ft_strlcat(char *dst, const char *src, size_t size)
 {
-	int	i;
+	size_t	i;
+	size_t	k;
 
 	i = 0;
-	while (src[i] != '\0')
+	k = 0;
+	while (dst[k++]) {;}
+	while (i < size)
 	{
-		dest[i] = src[i];
+		dst[k] = src[i]
 		i++;
+		k++;
 	}
-	dest[i] = '\0';
-	return (dest);
+	dst[k] = '\0';
+	return (k);
 }

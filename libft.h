@@ -6,7 +6,7 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:16:30 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/01 12:14:10 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/01 14:32:29 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int		ft_memcmp(const void *s1, const void *s2, size_t n);
 
 char	*ft_strnstr(const char *big, const char *little, size_t len);
 
-char	*ft_strcpy(char *dest, const char *src);
+char	*ft_strlcpy(char *dest, const char *src);
+
+char	*ft_strlcat(char *dst, const char *src, size_t size);
 
 #endif
