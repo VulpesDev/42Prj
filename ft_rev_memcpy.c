@@ -14,9 +14,13 @@
 
 void	*ft_rev_memcpy(void *dest, const void *src, size_t n)
 {
-	unsigned char	*csrc = (unsigned char *)src;
-	unsigned char	*cdest = (unsigned char *)dest;
-	int	i = (int)n;
+	unsigned char	*csrc;
+	unsigned char	*cdest;
+	int				i;
+
+	i = (int)n;
+	csrc = (unsigned char *)src;
+	cdest = (unsigned char *)dest;
 	while (i >= 0)
 	{
 		cdest[i] = csrc[i];
