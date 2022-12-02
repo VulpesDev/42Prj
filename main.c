@@ -6,7 +6,7 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:45:22 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/02 13:21:35 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/02 14:01:48 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,5 +151,11 @@ int	main(void)
 	printf("\n%s\n", "atoi");
 	char number[50] = "   248023sdafwq";
 	printf("%d\n", ft_atoi(number));
+
+	printf("\n%s\n", "calloc");
+	char *whatt = ft_calloc(10, sizeof(char));
+	whatt[0] = 'w';
+	whatt[1] = 'h';
+	printf("%s\n", whatt);
 	return (0);
 }

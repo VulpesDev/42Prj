@@ -6,7 +6,7 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:16:30 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/01 14:53:58 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/02 14:04:20 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,9 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 size_t	ft_strlcat(char *dst, const char *src, size_t size);
 
 int	ft_atoi(const char *nptr);
+
+void	*ft_calloc(size_t nmemb, size_t size);
+
+char	*ft_strdup(const char *s);
 
 #endif
