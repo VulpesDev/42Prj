@@ -6,12 +6,11 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 15:16:33 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/11/30 16:55:18 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/02 17:04:19 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 int	are_same(const char *big, const char *lit, size_t pos)
 {

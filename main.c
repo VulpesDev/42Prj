@@ -6,7 +6,7 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:45:22 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/02 14:01:48 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/02 16:48:29 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,20 +69,20 @@ int	main(void)
         printf("%c\n", ft_tolower(c));
 
 	printf("\n%s\n", "strchr");
-        c = 'k';
+        int	ci = 'k';
         s = "karaoke";
-        printf("%c\n", *ft_strchr(c, s));
-        c = 'y';
+        printf("%c\n", *ft_strchr(s, ci));
+        ci = 'y';
         s = "Sync in inky";
-        printf("%c\n", *ft_strchr(c, s));
+        printf("%c\n", *ft_strchr(s, ci));
 
 	printf("\n%s\n", "strrchr");
-	c = 'k';
+	ci = 'k';
 	s = "karaoke";
-	printf("%c\n", *ft_strrchr(c, s));
-	c = 'y';
+	printf("%c\n", *ft_strrchr(s, ci));
+	ci = 'y';
 	s = "Sync in inky";
-	printf("%c\n", *ft_strrchr(c, s));
+	printf("%c\n", *ft_strrchr(s, ci));
 
 	printf("\n%s\n", "isascii");
 	c = 97;

@@ -6,7 +6,7 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:16:30 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/02 14:04:20 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/02 16:26:12 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 # include <stddef.h>
 
-char	*ft_strchr(char c, const char *s);
+char	*ft_strchr(const char *s, int c);
 
-char	*ft_strrchr(char c, const char *s);
+char	*ft_strrchr(const char *s, int c);
 
 int		ft_isalpha(int c);
 

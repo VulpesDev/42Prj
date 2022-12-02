@@ -1,4 +1,4 @@
-gcc_sw =
+gcc_sw = -Wall -Wextra -Werror
 
 libft:	main
 	ar -cvq libft.a *.o
