@@ -6,7 +6,7 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:45:22 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/01 14:55:21 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/02 13:21:35 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,5 +147,9 @@ int	main(void)
 	char src20[50] = "World!";
 	printf("%ld\n", ft_strlcat(dest20, src20, 7));
 	printf("%s\n", dest20);
+
+	printf("\n%s\n", "atoi");
+	char number[50] = "   248023sdafwq";
+	printf("%d\n", ft_atoi(number));
 	return (0);
 }
