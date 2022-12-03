@@ -6,13 +6,15 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:45:22 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/02 16:48:29 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/03 16:43:24 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include<stdio.h>
 #include<strings.h>
 #include<string.h>
+#include<bsd/string.h>
+#include<stdlib.h>
 #include "libft.h"
 
 int	main(void)
@@ -70,8 +72,8 @@ int	main(void)
 
 	printf("\n%s\n", "strchr");
         int	ci = 'k';
-        s = "karaoke";
-        printf("%c\n", *ft_strchr(s, ci));
+        s = "bounjour";
+        printf("%c\n", *ft_strchr(s, 'b'));
         ci = 'y';
         s = "Sync in inky";
         printf("%c\n", *ft_strchr(s, ci));
@@ -87,7 +89,7 @@ int	main(void)
 	printf("\n%s\n", "isascii");
 	c = 97;
 	printf("%d\n", ft_isascii(c));
-	c = 210;
+	c = (unsigned char)210;
         printf("%d\n", ft_isascii(c));
 
 	printf("\n%s\n", "strlen");
@@ -120,9 +122,9 @@ int	main(void)
 	printf("Dest: %s\n", src2);
 
 	printf("\n%s\n", "strncmp");
-	char	s1[50] = "Helao";
-	char	s2[50] = "Helao";
-	printf("%d\n", ft_strncmp(s1, s2, 4));
+	char	s1[50] = "test\200";
+	char	s2[50] = "test\0";
+	printf("My:%d Real:%d\n", ft_strncmp(s1, s2, 6), strncmp(s1, s2, 6));
 
 	printf("\n%s\n", "memchr");
 	char	what[50] = "Hello";
@@ -130,10 +132,8 @@ int	main(void)
 	printf("Memory found:%p\n", ft_memchr(what, 'l', 5));
 
 	printf("\n%s\n", "strnstr");
-	const char largestring[20] = "Foo Bar Baz";
-	const char smallstring[20] = "Bar";
 	char *ptr;
-	ptr = ft_strnstr(largestring, smallstring, 20);
+	ptr = ft_strnstr("lorem ipsum dolor sit amet", "dolor", 15);
 	printf("%s\n", ptr ? ptr :"0");
 
 	printf("\n%s\n", "strlcpy");
@@ -143,14 +143,14 @@ int	main(void)
 	printf("%s\n", dest10);
 
 	printf("\n%s\n", "strlcat");
-	char dest20[50] = "Hello ";
-	char src20[50] = "World!";
-	printf("%ld\n", ft_strlcat(dest20, src20, 7));
+	char dest20[50] = "0123456789";
+	char src20[50] = "absdf";
+	printf("%zu\n", ft_strlcat(dest20, src20, 0));
 	printf("%s\n", dest20);
 
 	printf("\n%s\n", "atoi");
-	char number[50] = "   248023sdafwq";
-	printf("%d\n", ft_atoi(number));
+	char number[50] = "+-54";
+	printf("mine:%d real:%d\n", ft_atoi(number), atoi(number));
 
 	printf("\n%s\n", "calloc");
 	char *whatt = ft_calloc(10, sizeof(char));

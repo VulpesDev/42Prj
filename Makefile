@@ -1,30 +1,27 @@
 gcc_sw = -Wall -Wextra -Werror
 
+OBJ = main.o ft_strchr.o ft_strrchr.o\
+        ft_isalpha.o ft_isdigit.o ft_isalnum.o\
+        ft_isprint.o ft_tolower.o ft_toupper.o\
+        ft_isascii.o ft_strlen.o ft_memset.o\
+        ft_bzero.o ft_memcpy.o ft_memmove.o\
+        ft_rev_memcpy.o ft_strncmp.o ft_memchr.o\
+        ft_memcmp.o ft_strnstr.o ft_strlcpy.o ft_strlcat.o\
+        ft_atoi.o ft_calloc.o ft_strdup.o
+
 all: libft
 
 libft:	main
-	ar -cvq libft.a *.o
-main: main.o libft.h ft_strchr.o ft_strrchr.o\
-	ft_isalpha.o ft_isdigit.o ft_isalnum.o\
-	ft_isprint.o ft_tolower.o ft_toupper.o\
-	ft_isascii.o ft_strlen.o ft_memset.o\
-	ft_bzero.o ft_memcpy.o ft_memmove.o\
-	ft_rev_memcpy.o ft_strncmp.o ft_memchr.o\
-	ft_memcmp.o ft_strnstr.o ft_strlcpy.o ft_strlcat.o\
-	ft_atoi.o ft_calloc.o ft_strdup.o
-	cc -o main main.o ft_strchr.o \
-	ft_strrchr.o ft_isalpha.o \
-	ft_isdigit.o ft_isalnum.o ft_isprint.o \
-	ft_tolower.o ft_toupper.o ft_isascii.o \
-	ft_strlen.o ft_memset.o ft_bzero.o ft_memcpy.o \
-	ft_memmove.o ft_rev_memcpy.o ft_strncmp.o ft_memchr.o \
-	ft_memcmp.o ft_strnstr.o ft_strlcpy.o ft_strlcat.o \
-	ft_atoi.o ft_calloc.o ft_strdup.o
+	ar -cvq libft.a $(OBJ)
+main: main.o libft.h $(OBJ)
+	cc -o main $(OBJ)
 
-all: libft
+clean:
+	rm -f *.o
 
-fclean:
-	rm *.o main
+fclean: clean
+	rm -f main
+re: fclean all
 
 main.o: main.c libft.h
 	cc $(gcc_sw) -c main.c
