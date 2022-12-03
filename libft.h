@@ -63,4 +63,6 @@ void	*ft_calloc(size_t nmemb, size_t size);
 
 char	*ft_strdup(const char *s);
 
+char	*ft_substr(const char *s, unsigned int start, size_t len);
+
 #endif

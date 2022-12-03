@@ -7,7 +7,8 @@ OBJ = main.o ft_strchr.o ft_strrchr.o\
         ft_bzero.o ft_memcpy.o ft_memmove.o\
         ft_rev_memcpy.o ft_strncmp.o ft_memchr.o\
         ft_memcmp.o ft_strnstr.o ft_strlcpy.o ft_strlcat.o\
-        ft_atoi.o ft_calloc.o ft_strdup.o
+	ft_atoi.o ft_calloc.o ft_strdup.o\
+	ft_substr.o
 
 all: libft
 
@@ -25,6 +26,8 @@ re: fclean all
 
 main.o: main.c libft.h
 	cc $(gcc_sw) -c main.c
+ft_substr.o: ft_substr.c libft.h
+	cc $(gcc_sw) -c ft_substr.c
 ft_strchr.o: ft_strchr.c libft.h
 	cc $(gcc_sw) -c ft_strchr.c
 ft_strrchr.o: ft_strrchr.c libft.h
