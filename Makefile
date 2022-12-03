@@ -1,5 +1,7 @@
 gcc_sw = -Wall -Wextra -Werror
 
+all: libft
+
 libft:	main
 	ar -cvq libft.a *.o
 main: main.o libft.h ft_strchr.o ft_strrchr.o\
@@ -21,7 +23,7 @@ main: main.o libft.h ft_strchr.o ft_strrchr.o\
 
 all: libft
 
-clean:
+fclean:
 	rm *.o main
 
 main.o: main.c libft.h
