@@ -19,6 +19,8 @@ main: main.o libft.h ft_strchr.o ft_strrchr.o\
 	ft_memcmp.o ft_strnstr.o ft_strlcpy.o ft_strlcat.o \
 	ft_atoi.o ft_calloc.o ft_strdup.o
 
+all: libft
+
 clean:
 	rm *.o main
 
