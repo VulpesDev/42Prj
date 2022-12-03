@@ -156,5 +156,8 @@ int	main(void)
 	whatt[0] = 'w';
 	whatt[1] = 'h';
 	printf("%s\n", whatt);
+
+	printf("\n%s\n", "strtrim");
+	printf("%s\n", ft_strtrim("aaaeeHelloaaee", "ae"));
 	return (0);
 }
