@@ -159,5 +159,15 @@ int	main(void)
 
 	printf("\n%s\n", "strtrim");
 	printf("%s\n", ft_strtrim("aaaeeHelloaaee", "ae"));
+
+	printf("\n%s\n", "split");
+	char	**result = ft_split("lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse", ' ');
+	int	ii;
+	ii = 0;
+	while (result[ii] != (void *)0)
+	{
+		printf("%s\n", result[ii]);
+		ii++;
+	}
 	return (0);
 }

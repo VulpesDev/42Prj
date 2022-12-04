@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int	are_same(const char *big, const char *lit, size_t pos, size_t len)
+static int	are_same(const char *big, const char *lit, size_t pos, size_t len)
 {
 	size_t	i;
 

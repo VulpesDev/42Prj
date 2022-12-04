@@ -12,14 +12,14 @@
 
 #include "libft.h"
 
-int	ft_pow(int num, int pow)
+static int	ft_pow(int num, int pow)
 {
 	if (pow != 0)
 		return (num * ft_pow(num, pow - 1));
 	return (1);
 }
 
-int	calc_zeros(const char *nptr, int i)
+static int	calc_zeros(const char *nptr, int i)
 {
 	int	zeros;
 

@@ -1,7 +1,7 @@
 #include "libft.h"
 #include<stdlib.h>
 
-int	check_set(char c, const char *set)
+static int	check_set(char c, const char *set)
 {
 	int	i;
 
