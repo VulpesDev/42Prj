@@ -1,29 +1,40 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/06 11:28:05 by tvasilev          #+#    #+#             */
+/*   Updated: 2022/12/06 11:30:38 by tvasilev         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 #include<stdlib.h>
-#include<stdio.h>
 
 static unsigned int	occ_c(const char *s, char c)
 {
-	unsigned int	result;
 	int	i;
+	int	result;
 
 	result = 1;
 	i = -1;
 	while (s[++i])
 		if (s[i] == c)
 			result++;
-	return (result);
+	return ((unsigned int)result);
 }
+
 char	**ft_split(const char *s, char c)
 {
 	char	**result;
 	char	*s1;
 	char	*p;
-	int	count;
+	int		count;
 
 	s1 = ft_strdup(s);
-	result = malloc((occ_c(s1,c) + 1) * sizeof(char *));
-	printf("%d\n", occ_c(s1,c));
+	result = malloc((occ_c(s1, c) + 1) * sizeof(char *));
 	count = 0;
 	p = s1;
 	while (*s1)

@@ -6,7 +6,7 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:45:22 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/05 14:41:39 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/06 11:41:46 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,5 +169,8 @@ int	main(void)
 		printf("%s\n", result[ii]);
 		ii++;
 	}
+
+	printf("\n%s\n", "itoa");
+	printf("%s\n", ft_itoa(0));
 	return (0);
 }
