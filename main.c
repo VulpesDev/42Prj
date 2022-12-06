@@ -6,7 +6,7 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:45:22 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/06 13:16:05 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/06 16:36:49 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,5 +195,12 @@ int	main(void)
 //	printf("\n%s\n", "strmapi");
 	//printf("%s\n", ft_strmapi("Hello", &mapi));
 	printf("%s", re);
+
+	printf("\n%s\n", "putnbr");
+	ft_putnbr_fd(-5, 2);
+
+	printf("\n%s\n", "substr");
+	char	strrr[10] = "Hello";
+	printf("%s\n", ft_substr(strrr, 500, 5));
 	return (0);
 }

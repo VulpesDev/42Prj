@@ -6,7 +6,7 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:03:43 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/06 13:26:01 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/06 14:31:59 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 void	ft_putendl_fd(char *s, int fd)
 {
-	ft_putstr_fd(s, fd);
-	write(fd, (void *)'\n', 1);
+	int	i;
+
+	i = -1;
+	while (s[++i])
+		write(fd, &s[i], sizeof(char));
+	write(fd, "\n", 1);
+	write(fd, (void *)0, 1);
 }
