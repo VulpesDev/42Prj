@@ -9,7 +9,8 @@ OBJ = main.o ft_strchr.o ft_strrchr.o\
         ft_memcmp.o ft_strnstr.o ft_strlcpy.o ft_strlcat.o\
 	ft_atoi.o ft_calloc.o ft_strdup.o\
 	ft_substr.o ft_strjoin.o ft_strtrim.o ft_split.o\
-	ft_itoa.o
+	ft_itoa.o ft_strmapi.o ft_striteri.o ft_putchar_fd.o\
+	ft_putstr_fd.o ft_putendl_fd.o
 
 all: libft
 
@@ -27,6 +28,18 @@ re: fclean all
 
 main.o: main.c libft.h
 	cc $(gcc_sw) -c main.c
+ft_putnbr_fd.o: ft_putnbr_fd.c libft.h
+	cc $(gcc_sw) -c ft_putnbr_fd.c
+ft_putendl_fd.o: ft_putendl_fd.c libft.h
+	cc $(gcc_sw) -c ft_putendl_fd.c
+ft_putstr_fd.o: ft_putstr_fd.c
+	cc $(gcc_sw) -c ft_putstr_fd.c
+ft_putchar_fd.o: ft_putchar_fd.c
+	cc $(gcc_sw) -c ft_putchar_fd.c
+ft_striteri.o: ft_striteri.c libft.h
+	cc $(gcc_sw) -c ft_striteri.c
+ft_strmapi.o: ft_strmapi.c libft.h
+	cc $(gcc_sw) -c ft_strmapi.c
 ft_itoa.o: ft_itoa.c libft.h
 	cc $(gcc_sw) -c ft_itoa.c 
 ft_split.o: ft_split.c libft.h

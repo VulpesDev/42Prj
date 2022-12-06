@@ -6,7 +6,7 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:45:22 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/06 11:41:46 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/06 13:16:05 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,22 @@
 #include<string.h>
 #include<stdlib.h>
 #include "libft.h"
+
+char	mapi(unsigned int i, char c)
+{
+	static int indexArray[11] = {0};
+
+	if (i > 10 || indexArray[i] == 1)
+		printf("wrong index\n");
+	else
+		indexArray[i] = 1;
+	if (c >= 'a' && c <= 'z')
+	return (c - 32);
+	else if (c >= 'A' && c <= 'Z')
+		return (c + 32);
+	else
+		return (c);
+}
 
 int	main(void)
 {
@@ -172,5 +188,12 @@ int	main(void)
 
 	printf("\n%s\n", "itoa");
 	printf("%s\n", ft_itoa(0));
+
+	char	*re;
+	char	he[10] = "Hello";
+	re = ft_strmapi(he, &mapi);
+//	printf("\n%s\n", "strmapi");
+	//printf("%s\n", ft_strmapi("Hello", &mapi));
+	printf("%s", re);
 	return (0);
 }
