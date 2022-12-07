@@ -6,7 +6,7 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:45:22 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/07 13:59:00 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/07 16:07:44 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ int	main(void)
 	printf("%s\n", ft_strtrim("aaaeeHelloaaee", "ae"));
 
 	printf("\n%s\n", "split");
-	char	**result = ft_split("", 'z');
+	char	**result = ft_split("   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ", ' ');
 	int	ii;
 	ii = 0;
 	while (result[ii] != (void *)0)
@@ -185,7 +185,7 @@ int	main(void)
 		printf("%s\n", result[ii]);
 		ii++;
 	}
-
+/*
 	printf("\n%s\n", "itoa");
 	printf("%s\n", ft_itoa(0));
 
@@ -201,6 +201,6 @@ int	main(void)
 
 	printf("\n%s\n", "substr");
 	char	strrr[10] = "Hello";
-	printf("%s\n", ft_substr(strrr, 500, 5));
+	printf("%s\n", ft_substr(strrr, 500, 5));*/
 	return (0);
 }

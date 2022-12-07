@@ -6,13 +6,13 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:28:05 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/07 13:47:00 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/07 16:15:23 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include<stdlib.h>
-/*
+
 static unsigned int	occ_c(const char *s, char c)
 {
 	int	i;
@@ -24,26 +24,6 @@ static unsigned int	occ_c(const char *s, char c)
 		if (s[i] == c)
 			result++;
 	return ((unsigned int)result);
-}*/
-int	occ_c(const char *str, char c)
-{
-	int	i;
-	int	index;
-
-	i = 0;
-	index = 0;
-	while (*str)
-	{
-		if (*str != c && index == 0)
-		{
-			index = 1;
-			i++;
-		}
-		else if (*str == c)
-			index = 0;
-		str++;
-	}
-	return (i);
 }
 
 char	**ft_split(const char *s, char c)
@@ -72,6 +52,5 @@ char	**ft_split(const char *s, char c)
 	if (*(s1 - 1) != '\0')
 		result[count++] = ft_strdup(p);
 	result[count] = (void *)0;
-	free(s1);
 	return (result);
 }
