@@ -6,7 +6,7 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:45:22 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/06 16:36:49 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/07 13:59:00 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int	main(void)
 
 	char	str[50] = "Multi Very What";
 	printf("\n%s\n", "memset");
-	ft_memset(str, '.', 3*sizeof(char));
+	ft_memset(str, '.', 60);
 	printf("%s\n", str);
 
 	printf("\n%s\n", "bzero");
@@ -125,7 +125,7 @@ int	main(void)
 	printf("After: %s\n", buffer);
 
 	printf("\n%s\n", "memcpy");
-	char	dest[50];
+	char	dest[50] = "Whaaaaaaaaaaaat";
 	char	src[50] = "Hello OOOOO";
 	ft_memcpy(dest, src, 5 * sizeof(char));
 	printf("%s\n", dest);
@@ -177,7 +177,7 @@ int	main(void)
 	printf("%s\n", ft_strtrim("aaaeeHelloaaee", "ae"));
 
 	printf("\n%s\n", "split");
-	char	**result = ft_split("lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse", ' ');
+	char	**result = ft_split("", 'z');
 	int	ii;
 	ii = 0;
 	while (result[ii] != (void *)0)
