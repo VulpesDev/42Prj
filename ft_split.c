@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 11:28:05 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/07 16:15:23 by tvasilev         ###   ########.fr       */
+/*   Created: 2022/12/08 14:31:48 by tvasilev          #+#    #+#             */
+/*   Updated: 2022/12/08 14:42:09 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,11 @@ static unsigned int	occ_c(const char *s, char c)
 	return ((unsigned int)result);
 }
 
-char	**ft_split(const char *s, char c)
+char	**helper(char **result, char *s1, char *p, char c)
 {
-	char	**result;
-	char	*s1;
-	char	*p;
-	int		count;
+	int	count;
 
-	s1 = ft_strdup(s);
-	result = malloc((occ_c(s1, c) + 1) * sizeof(char *));
 	count = 0;
-	p = s1;
 	while (*s1)
 	{
 		while (*p == c && *s1)
@@ -49,8 +43,27 @@ char	**ft_split(const char *s, char c)
 		}
 		s1++;
 	}
-	if (*(s1 - 1) != '\0')
-		result[count++] = ft_strdup(p);
-	result[count] = (void *)0;
+	result[count++] = ft_strdup(p);
+	result[count] = NULL;
 	return (result);
+}
+
+char	**ft_split(const char *s, char c)
+{
+	char	**result;
+	char	*s1;
+	char	*p;
+	int		count;
+
+	if (s[0] == '\0')
+	{
+		result = malloc(1 * sizeof(char *));
+		result[0] = NULL;
+		return (result);
+	}
+	s1 = ft_strtrim(s, &c);
+	result = malloc((occ_c(s1, c) + 1) * sizeof(char *));
+	count = 0;
+	p = s1;
+	return (helper(result, s1, p, c));
 }

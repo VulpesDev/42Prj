@@ -6,7 +6,7 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:45:22 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/07 16:07:44 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/08 13:41:03 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,9 +158,9 @@ int	main(void)
 	printf("%s\n", dest10);
 
 	printf("\n%s\n", "strlcat");
-	char dest20[50] = "0123456789";
+	char dest20[50] = "rrrrrrrrrrrrrrrr";
 	char src20[50] = "absdf";
-	printf("%zu\n", ft_strlcat(dest20, src20, 0));
+	printf("%zu\n", ft_strlcat(dest20, src20, 5));
 	printf("%s\n", dest20);
 
 	printf("\n%s\n", "atoi");
@@ -177,13 +177,22 @@ int	main(void)
 	printf("%s\n", ft_strtrim("aaaeeHelloaaee", "ae"));
 
 	printf("\n%s\n", "split");
-	char	**result = ft_split("   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ", ' ');
+	char gfg[100] = "   lorem   ipsum dolor     sit amet, consectetur   adipiscing elit. Sed non risus. Suspendisse   ";
+	char	**result = ft_split(gfg, ' ');
 	int	ii;
 	ii = 0;
 	while (result[ii] != (void *)0)
 	{
 		printf("%s\n", result[ii]);
 		ii++;
+	}
+	printf("\n%s\n", "split orig");
+	const char s20[4] = " ";
+	char* tok;
+	tok = strtok(gfg, s20);
+	while (tok != 0) {
+	printf(" %s\n", tok);
+	tok = strtok(0, s20);
 	}
 /*
 	printf("\n%s\n", "itoa");
