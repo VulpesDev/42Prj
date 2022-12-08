@@ -11,17 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-//#include<stdlib.h>
-/*
-void	ft_putnbr_fd(int n, int fd)
-{
-	char	*r;
-
-	r = ft_itoa(n);
-	ft_putstr_fd(r, fd);
-	free(r);
-}
-*/
 
 static void	nbrr(long num, int fd)
 {
