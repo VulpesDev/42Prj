@@ -53,7 +53,6 @@ char	**ft_split(const char *s, char c)
 	char	**result;
 	char	*s1;
 	char	*p;
-	int		count;
 
 	if (s[0] == '\0')
 	{
@@ -63,7 +62,6 @@ char	**ft_split(const char *s, char c)
 	}
 	s1 = ft_strtrim(s, &c);
 	result = malloc((occ_c(s1, c) + 1) * sizeof(char *));
-	count = 0;
 	p = s1;
 	return (helper(result, s1, p, c));
 }
