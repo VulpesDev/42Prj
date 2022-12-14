@@ -6,7 +6,7 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 15:16:33 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/03 12:16:17 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/13 14:16:43 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	are_same(const char *big, const char *lit, size_t pos, size_t len)
 	i = 0;
 	while (lit[i] != '\0')
 	{
-		if (lit[i] != big[pos] || pos > len)
+		if (lit[i] != big[pos] || pos >= len)
 			return (0);
 		pos++;
 		i++;

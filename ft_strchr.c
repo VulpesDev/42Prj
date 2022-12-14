@@ -6,7 +6,7 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 15:09:38 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/03 14:06:34 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/13 13:54:30 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strchr(const char *s, int c)
 
 	i = 0;
 	while (i <= ft_strlen(s))
-		if (s[i++] == c)
+		if (s[i++] == (unsigned char)c)
 			return ((char *)(s + (i - 1)));
 	return ((void *)0);
 }

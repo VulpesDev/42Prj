@@ -6,7 +6,7 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 10:54:08 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/06 11:42:19 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/14 16:52:04 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,20 @@ static int	check_neg(int i, int zeros)
 char	*ft_itoa(int n)
 {
 	long	num;
-	int		zeros;
 	int		neg;
 	int		i;
 	char	*result;
 
-	zeros = calc_zeros(n);
-	result = malloc((zeros + 3) * sizeof(char));
+	i = check_neg(n, calc_zeros(n));
+	result = malloc((i + 2) * sizeof(char));
+	if (!result)
+		return (NULL);
 	if (n == 0)
 		result[0] = 48;
 	neg = n < 0;
 	num = (long)n;
 	if (num < 0)
 		num *= -1;
-	i = check_neg(n, zeros);
 	result[i + 1] = 0;
 	while (num)
 	{

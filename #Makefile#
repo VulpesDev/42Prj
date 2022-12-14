@@ -6,7 +6,7 @@
 #    By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 16:50:22 by tvasilev          #+#    #+#              #
-#    Updated: 2022/12/14 18:30:32 by tvasilev         ###   ########.fr        #
+#    Updated: 2022/12/14 17:16:42 by tvasilev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,6 @@ OBJ = $(SRC:.c=.o)
 OBJ_BONUS = $(SRC_BONUS:.c=.o)
 
 all: $(NAME)
-
-.c.o:
-	cc -Wall -Wextra -Werror -c $< -o $(<:.c=.o) -I .
 
 $(NAME): $(OBJ) $(OBJ_BONUS)
 	ar -cvq libft.a $(OBJ) $(OBJ_BONUS)

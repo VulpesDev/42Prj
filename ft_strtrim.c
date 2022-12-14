@@ -6,49 +6,31 @@
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 14:37:59 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/06 11:26:14 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/14 18:31:57 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include<stdlib.h>
 
-static int	check_set(char c, const char *set)
-{
-	int	i;
-
-	i = 0;
-	while (set[i])
-		if (c == set[i++])
-			return (1);
-	return (0);
-}
-
 char	*ft_strtrim(const char *s1, const char *set)
 {
+	int		start;
+	int		end;
 	char	*result;
-	int		len;
-	int		i;
 
-	i = -1;
-	len = ft_strlen(s1);
-	result = malloc(len * sizeof(char) + 1);
-	while (s1[++i])
+	result = 0;
+	if (s1 != 0 && set != 0)
 	{
-		if (!check_set(s1[i], set))
-		{
-			result = ft_strdup(s1 + i);
-			break ;
-		}
-	}
-	len = ft_strlen(result);
-	while (result[--len])
-	{
-		if (!check_set(result[len], set))
-		{
-			result[len + 1] = '\0';
-			break ;
-		}
+		start = 0;
+		end = ft_strlen(s1);
+		while (s1[start] && ft_strchr(set, s1[start]))
+			start++;
+		while (s1[end - 1] && ft_strchr(set, s1[end - 1]) && end > start)
+			end--;
+		result = malloc((end - start + 1) * sizeof(char));
+		if (result)
+			ft_strlcpy(result, &s1[start], end - start + 1);
 	}
 	return (result);
 }
