@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 18:27:30 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/16 16:46:43 by tvasilev         ###   ########.fr       */
+/*   Created: 2022/12/16 13:13:41 by tvasilev          #+#    #+#             */
+/*   Updated: 2022/12/16 17:09:03 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+t_list	*ft_lstlast(t_list *lst)
 {
-	if (!dest && !src)
+	t_list	*last;
+
+	if (!lst)
 		return (0);
-	while (n--)
-		((unsigned char *)dest)[n] = ((unsigned char *)src)[n];
-	return (dest);
+	last = lst;
+	while (last->next)
+		last = last->next;
+	return (last);
 }
