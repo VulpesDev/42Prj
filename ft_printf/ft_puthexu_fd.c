@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 15:40:14 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/18 17:06:18 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/18 17:35:48 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_puthexu_fd(int n, int fd)
 	result = 1;
 	to_put = '0';
 	if (n > 15)
-		result += ft_puthexU_fd(n / 16, fd);
+		result += ft_puthexu_fd(n / 16, fd);
 	if (n % 16 < 10)
 		to_put = (n % 16) + 48;
 	else if (n % 16 == 10)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:00:04 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/06 13:25:18 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/18 17:43:59 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,4 @@ void	ft_putstr_fd(char *s, int fd)
 	i = -1;
 	while (s[++i])
 		write(fd, &s[i], sizeof(char));
-	write(fd, (void *)0, 1);
 }
