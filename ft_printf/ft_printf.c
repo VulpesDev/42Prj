@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/17 17:36:36 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/19 14:29:09 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/19 16:03:23 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,4 @@ int	ft_printf(const char *s, ...)
 		}
 	}
 	return (len);
-}
-
-int main(void)
-{
-	ft_printf("%d\n", 15);
-	printf("%04d\n", 15);
-	printf("%04d\n", 15);
-	return (0);
 }
