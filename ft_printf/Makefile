@@ -1,39 +1,36 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/12/08 16:50:22 by tvasilev          #+#    #+#              #
-#    Updated: 2022/12/18 17:53:23 by tvasilev         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
-NAME = libftprintf.a
-
 SRC = ft_printf.c ft_putchari_fd.c ft_puthexl_fd.c ft_puthexu_fd.c\
 ft_puthexu_fd.c ft_putnbri_fd.c ft_putp_fd.c ft_putp_tohex_fd.c\
 ft_putstri_fd.c ft_putstri_fd.c ft_putusnbr.c
+OBJS = ${SRC:.c=.o}
+CC = cc
+CFLAGS = -Wall -Werror -Wextra
+RM = rm -f
+AR = ar -rcs
 
-OBJ = $(SRC:.c=.o)
+NAME = libftprintf.a
+DIRLIB		= ./libft/
+NAMELFT		= libft.a
+LIBFT = $(DIRLIB)$(NAMELFT)
 
-all: libft $(NAME)
+$(NAME) :	$(OBJS)
+	cd $(DIRLIB) && $(MAKE)
+	cp libft/libft.a $(NAME)
+	$(AR) $(NAME) $(OBJS)
 
-libft:
-	cd Lib && make all
-.c.o: 
-	cc -Wall -Wextra -Werror $(SRC) -c
-
-$(NAME): $(OBJ)
-	ar -cvq $(NAME) $(OBJ)
+all: $(NAME)
 
 clean:
-	cd Lib && make clean
-	-rm -f *.o
+	cd $(DIRLIB) && $(MAKE) clean
+	$(RM) $(OBJS)
+
+main: $(NAME)
+	${CC} main.c -L. ${NAME} 
 
 fclean: clean
-	cd Lib && make fclean
-	-rm -f $(NAME)
+	$(MAKE) fclean -C ./libft
+	cd $(DIRLIB) && $(MAKE) fclean
+	$(RM) $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re $(NAME)

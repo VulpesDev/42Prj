@@ -6,11 +6,11 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 16:07:23 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/18 17:05:12 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/19 12:37:26 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"Lib/libft.h"
+#include"libft/libft.h"
 #include<stdint.h>
 
 int	ft_putp_tohex_fd(uintptr_t n, int fd)

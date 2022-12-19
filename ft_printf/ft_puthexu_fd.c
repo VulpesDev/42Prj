@@ -6,13 +6,13 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 15:40:14 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/18 17:35:48 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/19 12:52:04 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Lib/libft.h"
+#include "ft_printf.h"
 
-int	ft_puthexu_fd(int n, int fd)
+int	ft_puthexu_fd(unsigned int n, int fd)
 {
 	char	to_put;
 	int		result;
