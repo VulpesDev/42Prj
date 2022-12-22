@@ -6,13 +6,13 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 16:34:34 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/22 15:12:38 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/22 17:21:52 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"get_next_line.h"
 
-//#define BUFFER_SIZE 1
+//#define BUFFER_SIZE 4096
 
 char	*get_next_line(int fd)
 {
@@ -26,35 +26,19 @@ char	*get_next_line(int fd)
 		buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
 		buff[read(fd, buff, BUFFER_SIZE)] = 0;
 	}
-	while (buff)
+	while (!ft_strchr(buff, '\n'))
 	{
-		while (!ft_strchr(buff, '\n'))
-		{
-			result = ft_strjoin(result, buff, ft_strlen(buff) + 1);
-			chars_read = read(fd, buff, BUFFER_SIZE);
-			if (chars_read <= 0)
-				return (0);
-			buff[chars_read] = 0;
-		}
-		if (ft_strchr(buff, '\n'))
-		{
-			result = ft_strjoin(result, buff, ft_strchr(buff, '\n') - buff + 2);
-			buff = ft_strchr(buff, '\n') + 1;
-			return (result);
-		}
-		/*
-		if (ft_strchr(buff, '\n'))
-		{
-			result = ft_strjoin(result, buff, ft_strchr(buff, '\n') - buff + 2);
-			buff = ft_strchr(buff, '\n') + 1;
-			return (result);
-		}
-		else
-		{
-			read(fd, buff, BUFFER_SIZE);
-			ft_strjoin(result, buff, ft_strlen(buff) + 1);
-		}
-		*/
+		result = ft_strjoin(result, buff, ft_strlen(buff) + 1);
+		chars_read = read(fd, buff, BUFFER_SIZE);
+		if (chars_read <= 0)
+			return (0);
+		buff[chars_read] = 0;
+	}
+	if (ft_strchr(buff, '\n'))
+	{
+		result = ft_strjoin(result, buff, ft_strchr(buff, '\n') - buff + 2);
+		buff = ft_strchr(buff, '\n') + 1;
+		return (result);
 	}
 	return (result);
 }
@@ -66,7 +50,7 @@ char	*get_next_line(int fd)
 // 	int i = 0;
 
 
-// 	while (i < 10)
+// 	while (i < 1)
 // 	{
 // 		s = get_next_line(fd);
 // 		printf("%s", s);
