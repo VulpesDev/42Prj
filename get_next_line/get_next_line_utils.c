@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 15:13:19 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/22 17:08:38 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/22 19:53:08 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	*ft_strchr(const char *s, int c)
 	return ((void *)0);
 }
 
-char	*ft_strjoin(const char *s1, const char *s2, size_t size)
+char	*ft_strjoin(char *s1, const char *s2, size_t size)
 {
 	char	*result;
 
@@ -61,16 +61,18 @@ char	*ft_strjoin(const char *s1, const char *s2, size_t size)
 		return (NULL);
 	ft_strlcpy(result, s1, ft_strlen(s1) + 1);
 	ft_strlcpy(result + ft_strlen(s1), s2, size);
+	free(s1);
 	return (result);
 }
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup(char *s)
 {
 	char	*result;
 
 	result = malloc(ft_strlen(s) * sizeof(char) + 1);
 	if (!result)
 		return (NULL);
-	ft_strlcpy(result, s, ft_strlen(s) + 1);
+	ft_strlcpy(result, *s, ft_strlen(s) + 1);
+	free(*s);
 	return (result);
 }

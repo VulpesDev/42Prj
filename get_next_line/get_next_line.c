@@ -6,17 +6,15 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 16:34:34 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/22 17:28:29 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/22 19:58:51 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"get_next_line.h"
 
-#define BUFFER_SIZE 4096
+#define BUFFER_SIZE 1
 
-//last line doesn't show (code does not work when no more \n)
-//free result (careful for over assigning)
-//free buff when chars_read == 0
+//free buff but at the beginning (save it with another char *) you cant free a cahnged adress!
 char	*get_next_line(int fd)
 {
 	static char	*buff;
@@ -33,15 +31,18 @@ char	*get_next_line(int fd)
 	{
 		result = ft_strjoin(result, buff, ft_strlen(buff) + 1);
 		chars_read = read(fd, buff, BUFFER_SIZE);
-		if (chars_read <= 0)
-			return (0);
 		buff[chars_read] = 0;
+		if (chars_read <= 0)
+		{
+			result = ft_strjoin(result, buff, ft_strchr(buff, '\n') - buff + 2);
+			free(buff);
+			return (result);
+		}
 	}
 	if (ft_strchr(buff, '\n'))
 	{
 		result = ft_strjoin(result, buff, ft_strchr(buff, '\n') - buff + 2);
-		buff = ft_strchr(buff, '\n') + 1;
-		return (result);
+		buff = ft_strchr(buff, '\n');
 	}
 	return (result);
 }
@@ -51,7 +52,6 @@ int	main(void)
 	int fd = open("hey", O_RDONLY);
 	char	*s;
 	int i = 0;
-
 
 	while (i < 1)
 	{
