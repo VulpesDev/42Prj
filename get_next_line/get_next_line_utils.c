@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 15:13:19 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/22 19:53:08 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/23 12:07:18 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,5 @@ char	*ft_strjoin(char *s1, const char *s2, size_t size)
 	ft_strlcpy(result, s1, ft_strlen(s1) + 1);
 	ft_strlcpy(result + ft_strlen(s1), s2, size);
 	free(s1);
-	return (result);
-}
-
-char	*ft_strdup(char *s)
-{
-	char	*result;
-
-	result = malloc(ft_strlen(s) * sizeof(char) + 1);
-	if (!result)
-		return (NULL);
-	ft_strlcpy(result, *s, ft_strlen(s) + 1);
-	free(*s);
 	return (result);
 }
