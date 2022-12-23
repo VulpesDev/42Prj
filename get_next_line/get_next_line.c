@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 16:34:34 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/23 16:00:34 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/23 17:08:37 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ char	*get_next_line(int fd)
 	while (!ft_strchr(buff, '\n') && *buff != *"")
 	{
 		result = ft_strjoin(result, buff, ft_strlen(buff) + 1);
-		//printf("\n---------\nBuff: %s\nResult: %s\n", buff, result);
 		chars_read = read(fd, buff, BUFFER_SIZE);
-		//printf("Chars read: %d\n---------\n", chars_read);
 		buff[chars_read] = 0;
 		if (chars_read <= 0)
 		{
@@ -49,14 +47,14 @@ char	*get_next_line(int fd)
 	if (ft_strchr(buff, '\n'))
 	{
 		result = ft_strjoin(result, buff, ft_strchr(buff, '\n') - buff + 2);
-		//printf("\n----2-----\nBuff: %s\nResult: %s\n-----2----\n", buff, result);
 		ft_strlcpy(buff, ft_strchr(buff, '\n') + 1, ft_strlen(ft_strchr(buff, '\n')));
 	}
-	if (result == 0 && chars_read == 0)
+	if (result == 0)
 	{
-		//printf("\n//////free buff/////\n");
 		free(buff);
 		buff = NULL;
+		free(result);
+		return (NULL);
 	}
 	return (result);
 }
@@ -67,7 +65,7 @@ int	main(void)
 	char	*s;
 	int i = 0;
 
-	while (i < 2)
+	while (i < 3)
 	{
 		s = get_next_line(fd);
 		printf("%s", s ? s : "<NULL>");
