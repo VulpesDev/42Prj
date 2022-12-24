@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 16:34:34 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/24 14:36:27 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/24 15:51:49 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ char	*get_next_line(int fd)
 		if (!buff)
 			return(NULL);
 		chars_read = read(fd, buff, BUFFER_SIZE);
+		if (chars_read < 0)
+		{
+				free(buff);
+				buff = NULL;
+				return (NULL);
+		}
 		buff[chars_read] = 0;
 	}
 	while ((!ft_strchr(buff, '\n') && *buff != *"") || *buff == '\0')
@@ -34,7 +40,14 @@ char	*get_next_line(int fd)
 		result = ft_strjoin(result, buff, ft_strlen(buff) + 1);
 		chars_read = read(fd, buff, BUFFER_SIZE);
 		buff[chars_read] = 0;
-		if (chars_read <= 0)
+		if (chars_read < 0)
+		{
+				free(buff);
+				buff = NULL;
+				free(result);
+				return (NULL);
+		}
+		if (chars_read == 0)
 		{
 			if (*result == *"")
 			{
