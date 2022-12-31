@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 16:33:30 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/24 19:32:43 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/30 16:06:24 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
+# include <stdio.h>
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1024
 # endif

@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/19 16:34:34 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/24 18:07:03 by tvasilev         ###   ########.fr       */
+/*   Updated: 2022/12/31 12:58:47 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,23 @@ static char	*helper(int fd, char **buff, char *result, int *chars_read)
 
 char	*get_next_line(int fd)
 {
-	static char	*buff;
+	static char	*buff[FOPEN_MAX];
 	char		*result;
 	int			chars_read;
 
 	result = 0;
 	chars_read = 0;
-	if (!buff)
+	if (fd < 0 || fd > FOPEN_MAX)
+		return (NULL);
+	if (!buff[fd])
 	{
-		buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
-		if (!buff)
+		buff[fd] = malloc((BUFFER_SIZE + 1) * sizeof(char));
+		if (!buff[fd])
 			return (NULL);
-		chars_read = read(fd, buff, BUFFER_SIZE);
+		chars_read = read(fd, buff[fd], BUFFER_SIZE);
 		if (chars_read < 0)
-			return (freeing_shit(&buff, result, 0));
-		buff[chars_read] = 0;
+			return (freeing_shit(&(buff[fd]), result, 0));
+		buff[fd][chars_read] = 0;
 	}
-	return (helper(fd, &buff, result, &chars_read));
+	return (helper(fd, &(buff[fd]), result, &chars_read));
 }
