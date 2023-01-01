@@ -1,9 +1,12 @@
 #include <mlx.h>
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 #define pi 3.14159265359
-#define CENTER_X 960
-#define CENTER_Y 540
+#define WIDTH 200
+#define HEIGHT 200
+#define CENTER_X WIDTH / 2
+#define CENTER_Y HEIGHT / 2
 
 
 typedef struct	s_data {
@@ -38,8 +41,9 @@ void	draw_line(t_data *data, t_point s_point, t_point e_point, int color)
 	int	dx, dy, len;
 	float	x_inc, y_inc;
 
-	dx = e_point.x - s_point.x;
-	dy = e_point.y - s_point.y;
+	dx = abs(e_point.x - s_point.x);
+	dy = abs(e_point.y - s_point.y);
+	printf("dx:%i,dy:%i\n", dx, dy);
 	len = dx > dy ? dx : dy;
 	x_inc = (float)dx / len;
 	y_inc = (float)dy / len;
@@ -81,16 +85,13 @@ void	draw_ngon(t_data *data, int n, float size, int color)
 		size * sin(2*pi*i/n + theta) + CENTER_Y);
 		points[i++] = p;
 	}
-	printf("i:%i\n", i);
-	int	k = 0;
 	t_point	c;
 	point_as(&c, CENTER_X, CENTER_Y);
-	while (k < i)
+	while (n--)
 	{
-		printf("i:%i\n", k);
-		printf("line# (x:%f y:%f) (x:%f y:%f)\n", c.x, c.y, points[k].x, points[k].y);
-		draw_line(data, c, points[k], color);
-		k++;
+		my_mlx_pixel_put(data, points[n].x, points[n].y, color);
+		draw_line(data, c, points[n], color);
+		printf("p%i-- px:%lf, py:%lf\n", n, points[n].x, points[n].y);
 	}
 }
 
@@ -101,13 +102,17 @@ int	main(void)
 	t_data	img;
 
 	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	img.img = mlx_new_image(mlx, 1920, 1080);
+	mlx_win = mlx_new_window(mlx, HEIGHT, WIDTH, "Hello world!");
+	img.img = mlx_new_image(mlx, HEIGHT, WIDTH);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
 	&img.line_length, &img.endian);
 
-	//draw_triangle(&img, 500, 500, 0x00FF0000);
-	draw_ngon(&img, 5, 100, 0x00FF0000);
+	t_point p1, p2;
+	point_as(&p1, 120, 120);
+	point_as(&p2, 140, 20);
+	//draw_triangle(&img, 1560, 1012, 0x00FF0000);
+	//draw_ngon(&img, 6, 40, 0x00FF0000);
+	draw_line(&img, p1, p2, 0x00FF0000);
 
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_loop(mlx);
