@@ -6,7 +6,7 @@
 #    By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 16:50:22 by tvasilev          #+#    #+#              #
-#    Updated: 2023/01/01 12:58:36 by tvasilev         ###   ########.fr        #
+#    Updated: 2023/01/02 16:47:08 by tvasilev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC = cc
 
 NAME = fractol
 
-SRC = main.c
+SRC = main.c drawing.c
 
 OBJ = $(SRC:.c=.o)
 
