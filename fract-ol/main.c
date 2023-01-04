@@ -55,6 +55,7 @@ void	clear_image(t_data *data)
 }
 
 int	do_fill = 0;
+float	scale = 1;
 
 void	put_triangle(t_data *data, t_point p1, t_point p2, t_point p3, int color)
 {
@@ -85,24 +86,45 @@ void	sierpinski(t_data *data, t_point p1, t_point p2, t_point p3, int color, int
 
 int	i = 0;
 
+t_point point(float x, float y)
+{
+	t_point	result;
+
+	result.x = x;
+	result.y = y;
+	return (result);
+}
+
+int	x_offset = 0;
+int	y_offset = 0;
+int tri_limit = 0;
+
 int	handle_input(int keysym, t_var *var)
 {
+	tri_limit = 3 + scale/3;
+	while (i < tri_limit)
+		i++;
+	printf("%d\n", tri_limit);
 	if (keysym == XK_Escape)
 		mlx_destroy_window(var->mlx, var->win);
-	else if (keysym == XK_Up)
+	else if (keysym == 112)
 	{
-		if (i + 1 < 7)
+		if (i + 1 < tri_limit)
 			i++;
 		clear_image(var->img);
-		sierpinski(var->img, var->p1, var->p2, var->p3, 0xFFFFFF, i);
+		sierpinski(var->img, point((var->p1.x + x_offset) * scale, (var->p1.y + y_offset) * scale),
+		 point((var->p2.x + x_offset) * scale, (var->p2.y + y_offset) * scale),
+		  point((var->p3.x + x_offset) * scale, (var->p3.y + y_offset) * scale), 0xFFFFFF, i);
 		 mlx_put_image_to_window(var->mlx, var->win, var->img->img, 0, 0);
 	}
-	else if (keysym == XK_Down)
+	else if (keysym == 111)
 	{
 		if (i - 1 > -1)
 			i--;
 		clear_image(var->img);
-		sierpinski(var->img, var->p1, var->p2, var->p3, 0xFFFFFF, i);
+		sierpinski(var->img, point((var->p1.x + x_offset) * scale, (var->p1.y + y_offset) * scale),
+		 point((var->p2.x + x_offset) * scale, (var->p2.y + y_offset) * scale),
+		  point((var->p3.x + x_offset) * scale, (var->p3.y + y_offset) * scale), 0xFFFFFF, i);
 		 mlx_put_image_to_window(var->mlx, var->win, var->img->img, 0, 0);
 	}
 	else if (keysym == 99)
@@ -112,7 +134,9 @@ int	handle_input(int keysym, t_var *var)
 		else
 			do_color = 1;
 		clear_image(var->img);
-		sierpinski(var->img, var->p1, var->p2, var->p3, 0xFFFFFF, i);
+		sierpinski(var->img, point((var->p1.x + x_offset) * scale, (var->p1.y + y_offset) * scale),
+		 point((var->p2.x + x_offset) * scale, (var->p2.y + y_offset) * scale),
+		  point((var->p3.x + x_offset) * scale, (var->p3.y + y_offset) * scale), 0xFFFFFF, i);
 		mlx_put_image_to_window(var->mlx, var->win, var->img->img, 0, 0);
 	}
 	else if (keysym == 102)
@@ -122,10 +146,65 @@ int	handle_input(int keysym, t_var *var)
 		else
 			do_fill = 1;
 		clear_image(var->img);
-		sierpinski(var->img, var->p1, var->p2, var->p3, 0xFFFFFF, i);
+		sierpinski(var->img, point((var->p1.x + x_offset) * scale, (var->p1.y + y_offset) * scale),
+		 point((var->p2.x + x_offset) * scale, (var->p2.y + y_offset) * scale),
+		  point((var->p3.x + x_offset) * scale, (var->p3.y + y_offset) * scale), 0xFFFFFF, i);
 		mlx_put_image_to_window(var->mlx, var->win, var->img->img, 0, 0);
 	}
-	//printf("%d\n",keysym);
+	else if (keysym == 61)
+	{
+		scale += 0.5;
+		clear_image(var->img);
+		sierpinski(var->img, point((var->p1.x + x_offset) * scale, (var->p1.y + y_offset) * scale),
+		 point((var->p2.x + x_offset) * scale, (var->p2.y + y_offset) * scale),
+		  point((var->p3.x + x_offset) * scale, (var->p3.y + y_offset) * scale), 0xFFFFFF, i);
+		mlx_put_image_to_window(var->mlx, var->win, var->img->img, 0, 0);
+	}
+	else if (keysym == 45)
+	{
+		scale -= 0.5;
+		clear_image(var->img);
+		sierpinski(var->img, point((var->p1.x + x_offset) * scale, (var->p1.y + y_offset) * scale),
+		 point((var->p2.x + x_offset) * scale, (var->p2.y + y_offset) * scale),
+		  point((var->p3.x + x_offset) * scale, (var->p3.y + y_offset) * scale), 0xFFFFFF, i);
+		mlx_put_image_to_window(var->mlx, var->win, var->img->img, 0, 0);
+	}
+	else if (keysym == XK_Up)
+	{
+		y_offset -= 10;
+		clear_image(var->img);
+		sierpinski(var->img, point((var->p1.x + x_offset) * scale, (var->p1.y + y_offset) * scale),
+		 point((var->p2.x + x_offset) * scale, (var->p2.y + y_offset) * scale),
+		  point((var->p3.x + x_offset) * scale, (var->p3.y + y_offset) * scale), 0xFFFFFF, i);
+		mlx_put_image_to_window(var->mlx, var->win, var->img->img, 0, 0);
+	}
+	else if (keysym == XK_Left)
+	{
+		x_offset -= 10;
+		clear_image(var->img);
+		sierpinski(var->img, point((var->p1.x + x_offset) * scale, (var->p1.y + y_offset) * scale),
+		 point((var->p2.x + x_offset) * scale, (var->p2.y + y_offset) * scale),
+		  point((var->p3.x + x_offset) * scale, (var->p3.y + y_offset) * scale), 0xFFFFFF, i);
+		mlx_put_image_to_window(var->mlx, var->win, var->img->img, 0, 0);
+	}
+	else if (keysym == XK_Down)
+	{
+		y_offset += 10;
+		clear_image(var->img);
+		sierpinski(var->img, point((var->p1.x + x_offset) * scale, (var->p1.y + y_offset) * scale),
+		 point((var->p2.x + x_offset) * scale, (var->p2.y + y_offset) * scale),
+		  point((var->p3.x + x_offset) * scale, (var->p3.y + y_offset) * scale), 0xFFFFFF, i);
+		mlx_put_image_to_window(var->mlx, var->win, var->img->img, 0, 0);
+	}
+	else if (keysym == XK_Right)
+	{
+		x_offset += 10;
+		clear_image(var->img);
+		sierpinski(var->img, point((var->p1.x + x_offset) * scale, (var->p1.y + y_offset) * scale),
+		 point((var->p2.x + x_offset) * scale, (var->p2.y + y_offset) * scale),
+		  point((var->p3.x + x_offset) * scale, (var->p3.y + y_offset) * scale), 0xFFFFFF, i);
+		mlx_put_image_to_window(var->mlx, var->win, var->img->img, 0, 0);
+	}
 	return (0);
 }
 
