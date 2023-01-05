@@ -50,6 +50,22 @@ void	clear_image(t_data *data)
 	}
 }
 
+void	paint_image(t_data *data, int color)
+{
+	int	y = 0;
+	int	x = 0;
+	while (y < HEIGHT)
+	{
+		x = 0;
+		while (x < WIDTH)
+		{
+			my_mlx_pixel_put_d(data, x, y, color);
+			x++;
+		}
+		y++;
+	}
+}
+
 void	point_as(t_point *p, float x, float y)
 {
 	p->x = x;

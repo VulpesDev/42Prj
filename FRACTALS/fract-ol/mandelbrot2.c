@@ -1,38 +1,22 @@
 #include"fract-ol.h"
 #include<complex.h>
+#include<time.h>
 
-int scale = 100;
-
-int	color_palette[] = {
-	0xbe9b7b,
-	0x854442,
-	0xfff4e6,
-	0x3c2f2f,
-	0xbe9b7b
-};
-
-void	mandelbrot(t_data *data, float x, float y)
+int scale = 1;
+void	mandelbrot(t_data *data, double x, double y)
 {
 	complex	c;
 	complex	z;
 	int k = 0;
-	float	dist;
 
 	z = 0;
 	c = x + y*I;
-	while (k < 250 && c != INFINITY)
+	while (k < 500 && c != INFINITY)
 	{
+		my_mlx_pixel_put(data, crealf(z) * scale, cimagf(z) * scale, k * k);
 		z = cpow(z, 2) + c;
-		dist = sqrt(creal(z) * creal(z) + cimag(z) * cimag(z));
-			if (dist > 2)
-			{
-				my_mlx_pixel_put(data, crealf(c) * scale, cimagf(c) * scale, color_palette[k % 5]);
-				return ;
-			}
 		k++;
 	}
-	my_mlx_pixel_put(data, crealf(c) * scale, cimagf(c) * scale, 0);
-	
 	
 	//printf("%d\n", k);
 }
@@ -41,6 +25,33 @@ int	mouse_event_callback(int button, int x, int y, t_var *param)
 {
 	clear_image(param->img);
 	printf("%s\n", "Clicked!");
+	if (button == 1)
+	{
+		int	t;
+		while (1)
+		{
+			t = clock()/10000;
+			printf("%d\n", t);
+			if (t % 2 == 0)
+			{
+				double kx = -1;
+				double ky = -1;
+				while (ky < 1.0)
+				{
+					kx = -1;
+					while (kx < 1.0)
+					{
+						mandelbrot(param->img, kx, ky);
+						kx+= 0.05;
+					}
+					ky+= 0.05;
+				}
+				scale+= 5;
+			}
+			mlx_put_image_to_window(param->mlx, param->win, param->img->img, 0, 0);
+		}
+	}
+	mlx_put_image_to_window(param->mlx, param->win, param->img->img, 0, 0);
 	return (0);
 }
 
@@ -55,21 +66,18 @@ int	main(void)
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
 	&img.line_length, &img.endian);
 	var.img = &img;
-	paint_image(&img, 0xFFFFFF);
 	//draw_axis(&var);
-	int kx = -WIDTH*3;
-	int ky = -HEIGHT*3;
-	while (ky < HEIGHT*3)
+	double kx = -2;
+	double ky = -2;
+	while (ky < 2.0)
 	{
-		kx = -WIDTH*3;
-		while (kx < WIDTH*3)
+		kx = -2;
+		while (kx < 2.0)
 		{
-			//printf("(%lf, %lf)", (float)((float)kx/(float)WIDTH), (float)((float)ky/(float)HEIGHT));
-			printf("%d%%\n", (int)(33.33 * ((float)((float)ky/((float)HEIGHT*3)) + 2)));
-			mandelbrot(var.img, (float)((float)kx/(float)WIDTH), (float)((float)ky/(float)HEIGHT));
-			kx+= 4;
+			mandelbrot(var.img, kx, ky);
+			kx+= 0.01;
 		}
-		ky+= 4;
+		ky+= 0.01;
 	}
 	//mandelbrot(&img, 0.26, 0.48);
 

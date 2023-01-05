@@ -30,6 +30,8 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 void	my_mlx_pixel_put_d(t_data *data, int x, int y, int color);
 
+void	paint_image(t_data *data, int color);
+
 void	point_as(t_point *p, float x, float y);
 
 void	draw_line(t_data *data, t_point s_point, t_point e_point, int color);
