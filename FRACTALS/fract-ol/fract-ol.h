@@ -5,6 +5,7 @@
 
 #define WIDTH 500
 #define HEIGHT 500
+#define DETAIL 4
 
 typedef struct	s_data {
 	void	*img;
