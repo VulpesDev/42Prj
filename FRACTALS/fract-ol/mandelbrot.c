@@ -39,19 +39,18 @@ void	mandelbrot(t_data *data, float x, float y)
 
 void	draw_mandelbrot(t_data *data, float detail)
 {
-	float kx = -WIDTH*3 / (scale / 100);
-	float ky = -HEIGHT*3 / (scale / 100);
-	while (ky < HEIGHT*3)
+	float kx = -5;
+	float ky = -5;
+	while (ky < 5)
 	{
-		kx = -WIDTH*3 / (scale / 100);
-		while (kx < WIDTH*3 / (scale / 100))
+		kx = -5;
+		while (kx < 5)
 		{
-			//printf("(%lf, %lf)", (float)((float)kx/(float)WIDTH), (float)((float)ky/(float)HEIGHT));
-			printf("\r%d%%", (int)(33.33 * ((float)((float)ky/((float)HEIGHT*3)) + 2)));
-			mandelbrot(data, (float)((float)kx/(float)WIDTH), (float)((float)ky/(float)HEIGHT));
-			kx+= detail / (float)(scale / 100.0);
+			printf("\r%d%%", (int)(33.33 * ((float)ky + 2)));
+			mandelbrot(data, (float)kx, (float)ky);
+			kx+= 0.01;
 		}
-		ky+= detail / (float)(scale / 100.0);
+		ky+= 0.01;
 	}
 	printf("\r100%% - ");
 	printf("\x1b[32mDONE\x1b[0m\n");
@@ -83,8 +82,9 @@ int	main(void)
 	&img.line_length, &img.endian);
 	var.img = &img;
 	paint_image(&img, 0xFFFFFF);
-	//draw_axis(&var);
+
 	draw_mandelbrot(&img, DETAIL);
+	draw_axis(&var);
 	//mandelbrot(&img, 0.26, 0.48);
 
 	mlx_mouse_hook(var.win, mouse_event_callback, &var);
