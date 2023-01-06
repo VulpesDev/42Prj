@@ -1,5 +1,6 @@
 #include"fract-ol.h"
 #define ITERATIONS 250
+#define SCALE_FACTOR 1.25
 
 int	color_palette[] = {
 	0xbe9b7b,
@@ -8,6 +9,21 @@ int	color_palette[] = {
 	0x3c2f2f,
 	0xbe9b7b
 };
+
+void change_color(int palette[], int increase)
+{
+	int	i;
+
+	i = 0;
+	while (i < 5)
+	{
+		if (increase)
+			palette[i] += 32;
+		else
+			palette[i] -= 32;
+		i++;
+	}
+}
 
 typedef struct s_complex{
 	float	r;
@@ -68,18 +84,73 @@ void	draw_mandelbrot(t_data *img)
 	printf("\x1b[32mDONE\x1b[0m\n"); // switch with ft_printf
 }
 
-int	mouse_event_callback(int button, int x, int y, t_var *var)
+int	mouse(int button, int x, int y, t_var *var)
 {
 	t_complex	coord;
 
+	if (button == 4){
 	clear_image(var->img);
 	coord = screen_to_world(x, y);
-	printf("(%f, %f)\n", coord.r, coord.i);
 	ORIGIN_X = coord.r;
 	ORIGIN_Y = coord.i;
-	scale /= 2;
+	scale /= SCALE_FACTOR;
 	draw_mandelbrot(var->img);
 	mlx_put_image_to_window(var->mlx, var->win, var->img->img, 0, 0);
+	}
+	else if (button == 5)
+	{
+		clear_image(var->img);
+	coord = screen_to_world(x, y);
+	ORIGIN_X = coord.r;
+	ORIGIN_Y = coord.i;
+	scale *= SCALE_FACTOR;
+	draw_mandelbrot(var->img);
+	mlx_put_image_to_window(var->mlx, var->win, var->img->img, 0, 0);
+	}
+	return (0);
+}
+
+int	key(int keycode, t_var *var)
+{
+	if (keycode == XK_Escape)
+		mlx_destroy_window(var->mlx, var->win);
+	else if (keycode == 100)
+	{
+		change_color(color_palette, 1);
+		draw_mandelbrot(var->img);
+		mlx_put_image_to_window(var->mlx, var->win, var->img->img, 0, 0);
+	}
+	else if (keycode == 97)
+	{
+		change_color(color_palette, 0);
+		draw_mandelbrot(var->img);
+		mlx_put_image_to_window(var->mlx, var->win, var->img->img, 0, 0);
+	}
+	else if (keycode == XK_Right)
+	{
+		ORIGIN_X += 0.2 * (scale * 100);
+		draw_mandelbrot(var->img);
+		mlx_put_image_to_window(var->mlx, var->win, var->img->img, 0, 0);
+	}
+	else if (keycode == XK_Left)
+	{
+		ORIGIN_X -= 0.2 * (scale * 100);
+		draw_mandelbrot(var->img);
+		mlx_put_image_to_window(var->mlx, var->win, var->img->img, 0, 0);
+	}
+	else if (keycode == XK_Up)
+	{
+		ORIGIN_Y += 0.2 * (scale * 100);
+		draw_mandelbrot(var->img);
+		mlx_put_image_to_window(var->mlx, var->win, var->img->img, 0, 0);
+	}
+	else if (keycode == XK_Down)
+	{
+		ORIGIN_Y -= 0.2 * (scale * 100);
+		draw_mandelbrot(var->img);
+		mlx_put_image_to_window(var->mlx, var->win, var->img->img, 0, 0);
+	}
+	printf("%d\n", keycode);
 	return (0);
 }
 
@@ -98,7 +169,8 @@ int	main(void)
 
 	draw_mandelbrot(&img);
 
-	mlx_mouse_hook(var.win, mouse_event_callback, &var);
+	mlx_mouse_hook(var.win, &mouse, &var);
+	mlx_key_hook(var.win, &key, &var);
 	mlx_put_image_to_window(var.mlx, var.win, img.img, 0, 0);
 	mlx_loop(var.mlx);
 	return (0);
