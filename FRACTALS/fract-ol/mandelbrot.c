@@ -39,7 +39,7 @@ void	mandelbrot(t_data *data, float x, float y)
 
 void	draw_mandelbrot(t_data *data, float detail)
 {
-	float kx = -5;
+	float kx = -HEIGHT;
 	float ky = -5;
 	while (ky < 5)
 	{
