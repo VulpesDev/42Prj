@@ -4,20 +4,13 @@
 # include <X11/keysym.h>
 # include <stdlib.h>
 # include <math.h>
-
 # define MLX_ERROR 1
-# ifndef WIDTH
-#  define WIDTH 500
-# endif
-# ifndef HEIGHT
-#  define HEIGHT 500
-# endif
-# ifndef ITERATIONS
-#  define ITERATIONS 250
-# endif
-# ifndef SCALE_FACTOR
-#  define SCALE_FACTOR 1.25
-# endif
+# define WIDTH 500
+# define HEIGHT 500
+# define ITERATIONS 250
+# define SCALE_FACTOR 1.25
+# define OFFSET_FACTOR 0.2
+# define COLOR_FACTOR 7
 #endif
 
 typedef struct	s_data {
@@ -33,6 +26,12 @@ typedef struct s_point{
 	float	y;
 }				t_point;
 
+typedef struct s_rgb{
+	int	r;
+	int	g;
+	int	b;
+}				t_rgb;
+
 typedef struct	s_var{
 	void	*mlx;
 	void	*win;
@@ -40,7 +39,10 @@ typedef struct	s_var{
 	float	scale;
 	float	o_x;
 	float	o_y;
-	int	color_palette[5];
+	t_rgb	rgb;
+	char	set;
+	float	cr;
+	float	ci;
 }				t_var;
 
 typedef struct s_complex{
@@ -48,20 +50,9 @@ typedef struct s_complex{
 	float	i;
 }			t_complex;
 
-
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-
 void	my_mlx_pixel_put_d(t_data *data, int x, int y, int color);
 
-void	paint_image(t_data *data, int color);
-
-void	point_as(t_point *p, float x, float y);
-
-void	draw_line(t_data *data, t_point s_point, t_point e_point, int color);
-
 void	clear_image(t_data *data);
-
-void	draw_axis(t_var *param);
 
 int	mouse_handle(int button, int x, int y, t_var *var);
 
@@ -71,8 +62,12 @@ t_complex	screen_to_world(float x, float y, t_var *var);
 
 void	mandelbrot(t_data *data, float x, float y, t_var *var);
 
-void	draw_mandelbrot(t_data *img, t_var *var);
+void	draw_set(t_data *img, t_var *var);
 
-void change_color(int palette[], int increase);
+void	change_color(t_var *var, int inc);
 
 int	close_window(t_var *var);
+
+void	julia(t_data *data, float x, float y, t_var *var);
+
+int	mouse_move_handle(int x, int y, t_var *var);

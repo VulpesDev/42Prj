@@ -6,7 +6,7 @@
 #    By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 16:50:22 by tvasilev          #+#    #+#              #
-#    Updated: 2023/01/06 14:47:57 by tvasilev         ###   ########.fr        #
+#    Updated: 2023/01/07 14:42:13 by tvasilev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC = cc
 
 NAME = fractol
 
-SRC = mandelbrot.c draw.c  event_handler.c
+SRC = mandelbrot.c event_handler.c management_calc.c sets.c
 
 OBJ = $(SRC:.c=.o)
 
