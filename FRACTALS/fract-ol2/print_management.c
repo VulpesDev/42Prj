@@ -1,16 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   print_management.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/01 14:41:26 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/19 11:45:00 by tvasilev         ###   ########.fr       */
+/*   Created: 2023/01/08 10:47:13 by tvasilev          #+#    #+#             */
+/*   Updated: 2023/01/08 12:55:57 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fractol.h"
+
+int	print_warning(void)
+{
+	ft_printf("\n----------\n");
+	ft_printf("Error!\n");
+	ft_printf("Incorrect input!\n\n");
+	ft_printf("Here is a list of parameters you can use:\n");
+	ft_printf("  m- Mandelbrot\n");
+	ft_printf("  j- Julia\n");
+	ft_printf("    j r<0/500> i<0/500>\n");
+	ft_printf("  t- Tricorn\n");
+	ft_printf("----------\n\n");
+	return (-1);
+}
 
 static int	ft_pow(int num, int pow)
 {

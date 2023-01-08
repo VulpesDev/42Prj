@@ -6,11 +6,11 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 12:37:51 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/01/07 16:39:40 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/01/08 12:15:51 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"fract-ol.h"
+#include"fractol.h"
 
 int	close_window(t_var *var)
 {
@@ -25,7 +25,6 @@ int	mouse_handle(int button, int x, int y, t_var *var)
 	coord = screen_to_world(x, y, var);
 	if (button == 4 || button == 5)
 	{
-		clear_image(var->img);
 		var->o_x = coord.r;
 		var->o_y = coord.i;
 		if (button == 4)
@@ -47,6 +46,7 @@ int	mouse_move_handle(int x, int y, t_var *var)
 	var->ci = coord.i;
 	draw_set(var->img, var);
 	mlx_put_image_to_window(var->mlx, var->win, var->img->img, 0, 0);
+	return (0);
 }
 
 int	key_handle(int keycode, t_var *var)
@@ -57,13 +57,9 @@ int	key_handle(int keycode, t_var *var)
 		return (0);
 	}
 	else if (keycode == 100)
-	{
 		change_color(var, 1);
-	}
 	else if (keycode == 97)
-	{
 		change_color(var, 0);
-	}
 	else if (keycode == XK_Right)
 		var->o_x += OFFSET_FACTOR * (var->scale * 100);
 	else if (keycode == XK_Left)

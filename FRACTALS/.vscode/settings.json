@@ -2,6 +2,9 @@
 	"files.associations": {
 		"math.h": "c",
 		"mlx.h": "c",
-		"stdio.h": "c"
-	}
+		"stdio.h": "c",
+		"ft_printf.h": "c",
+		"fractol.h": "c"
+	},
+	"C_Cpp.errorSquiggles": "disabled"
 }

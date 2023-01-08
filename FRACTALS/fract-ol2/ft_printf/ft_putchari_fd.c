@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_putchari_fd.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tvasilev <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 18:06:57 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/07 14:04:10 by tvasilev         ###   ########.fr       */
+/*   Created: 2022/12/18 16:40:50 by tvasilev          #+#    #+#             */
+/*   Updated: 2022/12/19 11:44:52 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"libft.h"
+#include<unistd.h>
+#include "ft_printf.h"
 
-void	ft_bzero(void *s, size_t n)
+int	ft_putchari_fd(char c, int fd)
 {
-	ft_memset(s, 0, n);
+	write(fd, &c, sizeof(char));
+	return (1);
 }

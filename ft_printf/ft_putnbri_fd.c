@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/18 16:50:37 by tvasilev          #+#    #+#             */
-/*   Updated: 2022/12/19 11:44:50 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/01/08 09:57:10 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	nbrr(long num, int fd)
 	result = 1;
 	if (num > 9)
 		result += nbrr(num / 10, fd);
-	ft_putchar_fd((num % 10) + 48, fd);
+	ft_putchari_fd((num % 10) + 48, fd);
 	return (result);
 }
 
@@ -33,7 +33,7 @@ int	ft_putnbri_fd(int n, int fd)
 	if (num < 0)
 	{
 		num *= -1;
-		ft_putchar_fd('-', fd);
+		ft_putchari_fd('-', fd);
 		len++;
 	}
 	len += nbrr(num, fd);

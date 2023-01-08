@@ -6,11 +6,11 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 12:35:55 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/01/07 16:39:19 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/01/08 11:52:34 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"fract-ol.h"
+#include"fractol.h"
 
 void	change_color(t_var *var, int inc)
 {
@@ -47,17 +47,12 @@ void	my_mlx_pixel_put_d(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	clear_image(t_data *data)
+t_rgb	new_rgb(int r, int g, int b)
 {
-	int	x;
-	int	y;
+	t_rgb	result;
 
-	x = -1;
-	y = -1;
-	while (++y < HEIGHT)
-	{
-		x = -1;
-		while (++x < WIDTH)
-			my_mlx_pixel_put_d(data, x, y, 0);
-	}
+	result.r = r;
+	result.g = g;
+	result.b = b;
+	return (result);
 }
