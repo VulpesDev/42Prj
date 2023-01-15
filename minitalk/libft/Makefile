@@ -37,10 +37,10 @@ all: $(NAME) bonus
 	cc -Wall -Wextra -Werror -c $< -o $(<:.c=.o) -I .
 
 $(NAME): $(OBJ)
-	ar -cvq libft.a $(OBJ)
+	ar -crs libft.a $(OBJ)
 
 bonus: $(OBJ) $(OBJ_BONUS)
-	ar -cvq libft.a $(OBJ) $(OBJ_BONUS)
+	ar -crs libft.a $(OBJ) $(OBJ_BONUS)
 
 clean:
 	-rm -f *.o
