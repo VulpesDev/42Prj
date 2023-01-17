@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tsvetoslav <tsvetoslav@student.42.fr>      +#+  +:+       +#+         #
+#    By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 16:50:22 by tvasilev          #+#    #+#              #
-#    Updated: 2023/01/10 14:39:02 by tsvetoslav       ###   ########.fr        #
+#    Updated: 2023/01/17 12:12:40 by tvasilev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ PRINTF_FOLDER = ./ft_printf
 
 LIBFT_FOLDER = ./libft
 
-all: $(NAME_SERVER) $(NAME_CLIENT)
+all: $(NAME_CLIENT) $(NAME_SERVER) 
 
 .c.o:
 	$(CC) -O3 -c $< -o $@ -g
