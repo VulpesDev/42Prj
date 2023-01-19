@@ -6,96 +6,88 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 13:26:55 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/01/18 16:50:22 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/01/19 20:00:23 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"minitalk.h"
 
-int	i;
-char	byte[BYTE_SIZE];
-int	in_num;
-int	len;
-char	*result;
-int	k;
-int	pid_mode;
-int	pid_c;
+t_vars	g_vars;
 
-void	end_num()
+void	end_num(void)
 {
-	if (result)
-		free(result);
-	result = ft_calloc(len + 10 ,sizeof(char));
-	in_num = 0;
-	len = 0;
+	if (g_vars.result)
+		free(g_vars.result);
+	g_vars.result = ft_calloc(g_vars.len + 10, sizeof(char));
+	g_vars.in_num = 0;
+	g_vars.len = 0;
 }
 
-void	printn()
+void	printn(void)
 {
 	int	i_val;
 
-	i = 0;
-	i_val = str_bin(ft_atoi(byte));
-	if (i_val >= 255 && !in_num)
-		in_num = 1;
+	g_vars.i = 0;
+	i_val = str_bin(ft_atoi(g_vars.byte));
+	if (i_val >= 255 && !g_vars.in_num)
+		g_vars.in_num = 1;
 	else if (i_val <= 0)
 	{
-		if (pid_mode)
+		if (g_vars.pid_mode)
 		{
-			pid_c = ft_atoi(result);
-			ft_printf("\npid:%i\n", pid_c);
+			g_vars.pid_c = ft_atoi(g_vars.result);
+			g_vars.pid_mode = 0;
 		}
 		else
-			ft_printf("\n%s\n", result);
-		k = 0;
-		pid_mode = 0;
+		{
+			ft_printf("\n%s\n", g_vars.result);
+			g_vars.pid_mode = 1;
+		}
+		g_vars.k = 0;
 	}
 	else
-	{
-		result[k++] = i_val;
-	}
-	ft_printf("\n");
+		g_vars.result[g_vars.k++] = i_val;
 }
 
-void	add_zero()
+void	add_zero(void)
 {
-	if (in_num)
-		return end_num();
-	ft_printf("0");
-	byte[i++] = '0';
-	if (i >= BYTE_SIZE )
+	if (g_vars.in_num)
+		return (end_num());
+	g_vars.byte[g_vars.i++] = '0';
+	if (!g_vars.pid_mode)
+		kill(g_vars.pid_c, SIGUSR1);
+	if (g_vars.i >= BYTE_SIZE)
 		printn();
 }
 
-void	add_one()
+void	add_one(void)
 {
-	if(in_num)
+	if (g_vars.in_num)
 	{
-		len++;
+		g_vars.len++;
+		if (!g_vars.pid_mode)
+			kill(g_vars.pid_c, SIGUSR1);
 		return ;
 	}
-	ft_printf("1");
-	byte[i++] = '1';
-	// usleep(50);
-	// if (!pid_mode)
-	// 	kill(pid_c, SIGUSR1);
-	if (i >= BYTE_SIZE )
+	g_vars.byte[g_vars.i++] = '1';
+	if (!g_vars.pid_mode)
+		kill(g_vars.pid_c, SIGUSR1);
+	if (g_vars.i >= BYTE_SIZE)
 		printn();
 }
 
 int	main(void)
 {
-	i = 0;
-	k = 0;
-	in_num = 0;
-	len = 0;
-	result = 0;
-	pid_mode = 1;
+	g_vars.i = 0;
+	g_vars.k = 0;
+	g_vars.in_num = 0;
+	g_vars.len = 0;
+	g_vars.result = 0;
+	g_vars.pid_mode = 1;
 	signal(SIGUSR1, add_zero);
 	signal(SIGUSR2, add_one);
 	ft_printf("\nServer started successfuly!\n\nPID: %d\n-----------\n\n", getpid());
 	while (1)
 		;
-	
 	return (0);
 }

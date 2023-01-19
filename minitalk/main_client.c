@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main_client.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/19 19:56:39 by tvasilev          #+#    #+#             */
+/*   Updated: 2023/01/19 20:01:53 by tvasilev         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include"minitalk.h"
 
-int	can_send;
+int	g_can_send;
 
 void	send_signal_special(int pid, int sig, int w_sig)
 {
@@ -9,19 +21,19 @@ void	send_signal_special(int pid, int sig, int w_sig)
 	i = BYTE_SIZE;
 	while (i)
 	{
-		if (can_send || !w_sig)
+		if (g_can_send || !w_sig)
 		{
 			if (!sig)
 				kill(pid, SIGUSR1);
 			else
 				kill(pid, SIGUSR2);
 			i--;
-			can_send = 0;
+			g_can_send = 0;
 		}
-		if (w_sig)
-			pause();
+		if (!w_sig)
+			usleep(150);
 		else
-			usleep(50000);
+			pause();
 	}
 }
 
@@ -35,10 +47,11 @@ void	send_signal(int pid, char *str, int w_sig)
 	sdup = ft_strdup(str);
 	while (sdup[++i])
 	{
+		usleep(1);
 		limit = BYTE_SIZE;
 		while (limit)
 		{
-			if (can_send || !w_sig)
+			if (g_can_send || !w_sig)
 			{
 				if (sdup[i] & 128)
 					kill(pid, SIGUSR2);
@@ -46,14 +59,15 @@ void	send_signal(int pid, char *str, int w_sig)
 					kill(pid, SIGUSR1);
 				sdup[i] = sdup[i] << 1;
 				limit--;
-				can_send = 0;
+				g_can_send = 0;
 			}
-			if (w_sig)
-			pause();
+			if (!w_sig)
+				usleep(150);
 			else
-			usleep(50000);
+				pause();
 		}
 	}
+	free(sdup);
 	send_signal_special(pid, 0, w_sig);
 }
 
@@ -61,25 +75,23 @@ void	send_signal_n(int pid, int n, int w_sig)
 {
 	while (n)
 	{
-		if (can_send || !w_sig)
+		if (g_can_send || !w_sig)
 		{
-			ft_printf("n:%d\n", n);
 			kill(pid, SIGUSR2);
-			can_send = 0;
+			g_can_send = 0;
 			n--;
 		}
-		if (w_sig)
-			pause();
+		if (!w_sig)
+			usleep(150);
 		else
-			usleep(50000);
+			pause();
 	}
 	kill(pid, SIGUSR1);
 }
 
-void	send_confirm()
+void	send_confirm(void)
 {
-	ft_printf("\nReceived confirmation!\n");
-	can_send = 1;
+	g_can_send = 1;
 }
 
 int	main(int argc, char **argv)
@@ -87,19 +99,16 @@ int	main(int argc, char **argv)
 	int		pid;
 
 	signal(SIGUSR1, send_confirm);
-	can_send = 1;
+	g_can_send = 1;
 	pid = ft_atoi(argv[1]);
 	ft_printf("(pid: %d, str: %s)\n", pid, argv[2]);
 	ft_printf("len of str: %d\n", ft_strlen(argv[2]));
-	
 	send_signal_special(pid, 1, 0);
-	send_signal_n(pid, ft_strlen(ft_itoa(pid)) + 1, 0);
-	send_signal(pid, ft_itoa(pid), 0);
-	ft_printf("\npid finished!\n");
-	can_send = 1;
-	send_signal_special(pid, 1, 0);
-	ft_printf("\nspecial sent\n");
-	send_signal_n(pid, ft_strlen(argv[2]) + 1, 0);
-	send_signal(pid, argv[2], 0);
+	send_signal_n(pid, ft_strlen(ft_itoa(getpid())) + 1, 0);
+	send_signal(pid, ft_itoa(getpid()), 0);
+	g_can_send = 1;
+	send_signal_special(pid, 1, 1);
+	send_signal_n(pid, ft_strlen(argv[2]) + 1, 1);
+	send_signal(pid, argv[2], 1);
 	return (0);
 }
