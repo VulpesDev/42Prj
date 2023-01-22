@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 12:42:34 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/01/21 17:34:34 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/01/22 11:55:53 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ static int	print_error(void)
 static int	is_str_number(char *str)
 {
 	int		i;
+	int		num;
 
 	i = 0;
+	num = 0;
 	if (!str)
 		return (0);
 	while (str[i] == '+' || str[i] == '-'
@@ -34,9 +36,14 @@ static int	is_str_number(char *str)
 	{
 		if (!ft_isdigit(str[i]))
 			return (0);
+		else
+			num++;
 		i++;
 	}
-	return (1);
+	if (num > 0)
+		return (1);
+	else
+		return (0);
 }
 
 static int	is_duplicate(int i, int argc, char **str)
