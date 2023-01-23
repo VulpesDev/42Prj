@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:40:05 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/01/23 13:45:52 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/01/23 18:00:59 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	r(t_stack *stack)
 	stack->stack_ar[0] = temp;
 }
 
-void	rr(t_stack *stack)
+void	revr(t_stack *stack)
 {
 	int	temp;
 	int	i;

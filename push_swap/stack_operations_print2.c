@@ -1,34 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   stack_operations_print2.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/21 12:31:19 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/01/23 18:23:49 by tvasilev         ###   ########.fr       */
+/*   Created: 2023/01/23 18:03:02 by tvasilev          #+#    #+#             */
+/*   Updated: 2023/01/23 18:04:25 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	ra(t_stack *stack_a)
 {
-	int		i;
-	t_stack	stack_a;
-	t_stack	stack_b;
+	ft_printf("ra\n");
+	r(stack_a);
+}
 
-	i = 0;
-	stack_a.stacked = 0;
-	stack_b.stacked = 0;
-	if (!handle_errors(argc, argv))
-		return (0);
-	else
-	{
-		while (--argc >= 1)
-		{
-			push(&stack_a, ft_atoi(argv[argc]));
-		}
-	}
-	return (0);
+void	rb(t_stack *stack_b)
+{
+	ft_printf("rb\n");
+	r(stack_b);
+}
+
+void	rr(t_stack *stack_a, t_stack *stack_b)
+{
+	ft_printf("rr\n");
+	ra(stack_a);
+	rb(stack_b);
+}
+
+void	rra(t_stack *stack_a)
+{
+	ft_printf("rra\n");
+	revr(stack_a);
+}
+
+void	rrb(t_stack *stack_b)
+{
+	ft_printf("rrb\n");
+	revr(stack_b);
 }
