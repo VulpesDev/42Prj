@@ -6,12 +6,13 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 14:51:56 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/01/22 15:14:40 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/01/23 13:41:48 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+//* BAISC STACK FUNCTIONS
 void	display(t_stack stack)
 {
 	while (stack.stacked--)

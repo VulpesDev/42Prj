@@ -6,7 +6,7 @@
 #    By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 16:50:22 by tvasilev          #+#    #+#              #
-#    Updated: 2023/01/22 14:54:39 by tvasilev         ###   ########.fr        #
+#    Updated: 2023/01/23 13:48:33 by tvasilev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Werror -Wextra
 
 NAME = push_swap
 
-SRC = push_swap.c error_handling.c atol.c stack_operations.c
+SRC = push_swap.c error_handling.c atol.c stack_operations.c stack_operations_subject.c
 
 OBJ = $(SRC:.c=.o)
 

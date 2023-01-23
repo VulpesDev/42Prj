@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 12:33:23 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/01/22 14:59:17 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/01/23 13:43:41 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,14 @@ typedef struct s_stack{
 	int	stacked;
 }			t_stack;
 int		handle_errors(int argc, char **argv);
+long	ft_atol(const char *nptr);
+//* BAISC STACK FUNCTIONS
 void	display(t_stack stack);
 void	push(t_stack *stack, int value);
 void	pop(t_stack *stack);
-long	ft_atol(const char *nptr); // checks for numbers that 
-//										have the same length as max and min
-
+//* SUBJECT FUNCTIONS
+void	s(t_stack *stack);
+void	p(t_stack *stack, t_stack *stack_receive);
+void	r(t_stack *stack);
+void	rr(t_stack *stack);
 #endif
