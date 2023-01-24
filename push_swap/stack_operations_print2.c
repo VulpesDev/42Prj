@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 18:03:02 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/01/23 18:04:25 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/01/24 13:40:32 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	rb(t_stack *stack_b)
 void	rr(t_stack *stack_a, t_stack *stack_b)
 {
 	ft_printf("rr\n");
-	ra(stack_a);
-	rb(stack_b);
+	r(stack_a);
+	r(stack_b);
 }
 
 void	rra(t_stack *stack_a)

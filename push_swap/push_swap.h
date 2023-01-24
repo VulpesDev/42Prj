@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 12:33:23 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/01/23 18:11:02 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/01/24 13:58:14 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define INT_MIN -2147483648
 # define INT_MAX_COUNT 10
 # define STACK_SIZE 1000
+# define MAX(x, y) x > y ? x : y 
 
 typedef struct s_stack{
 	int	stack_ar[STACK_SIZE];
