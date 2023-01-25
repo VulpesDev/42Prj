@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 12:42:34 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/01/22 14:58:04 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/01/25 17:21:09 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static int	print_error(void)
 {
-	ft_printf("Error!");
+	if (write(2, "Error!", 7))
+		;
 	return (0);
 }
 
