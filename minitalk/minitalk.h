@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 19:56:32 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/01/19 19:57:40 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/01/20 12:23:34 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,13 @@
 # include <limits.h>
 # include <stdlib.h>
 # define BYTE_SIZE 8
+# define SLEEP_TIME 150
 
-int	str_bin(int ch);
+int		str_bin(int ch);
+
+void	wait_func(int w_sig);
+
+int		check_pid(char *str);
 
 typedef struct s_vars{
 	int		i;
@@ -33,5 +38,11 @@ typedef struct s_vars{
 	int		pid_mode;
 	int		pid_c;
 }				t_vars;
+
+typedef struct s_send_vars{
+	int		i;
+	int		limit;
+	char	*sdup;
+}				t_send_vars;
 
 #endif

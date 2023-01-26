@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 13:26:55 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/01/19 20:00:23 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/01/20 12:08:33 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ t_vars	g_vars;
 
 void	end_num(void)
 {
-	if (g_vars.result)
-		free(g_vars.result);
 	g_vars.result = ft_calloc(g_vars.len + 10, sizeof(char));
 	g_vars.in_num = 0;
 	g_vars.len = 0;
@@ -42,6 +40,7 @@ void	printn(void)
 		{
 			ft_printf("\n%s\n", g_vars.result);
 			g_vars.pid_mode = 1;
+			free(g_vars.result);
 		}
 		g_vars.k = 0;
 	}
@@ -49,7 +48,7 @@ void	printn(void)
 		g_vars.result[g_vars.k++] = i_val;
 }
 
-void	add_zero(void)
+void	add_zero(int a)
 {
 	if (g_vars.in_num)
 		return (end_num());
@@ -60,7 +59,7 @@ void	add_zero(void)
 		printn();
 }
 
-void	add_one(void)
+void	add_one(int a)
 {
 	if (g_vars.in_num)
 	{
