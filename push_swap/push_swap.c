@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 12:31:19 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/01/25 17:19:27 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/01/26 16:32:51 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,20 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 	int	i;
 	int	smallest;
 	int	midpoint;
+	int	midpoint1;
+	int	midpoint_b;
 	int	smallest_i;
 
+	midpoint = 0;
+	i = 0;
 	while (stack_a->stacked)
 	{
-		midpoint = 0;
+		midpoint1 = 0;
 		smallest = stack_a->stack_ar[stack_a->stacked - 1];
 		i = 0;
 		while (i < stack_a->stacked)
 		{
-			midpoint += stack_a->stack_ar[i];
+			midpoint1 += stack_a->stack_ar[i];
 			if (stack_a->stack_ar[i] < smallest)
 			{
 				smallest = stack_a->stack_ar[i];
@@ -35,17 +39,32 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 			}
 			i++;
 		}
-		midpoint /= i;
-		while (stack_a->stack_ar[stack_a->stacked - 1] > smallest && stack_a->stack_ar[stack_a->stacked - 1] > midpoint)
+		midpoint1 /= i;
+		while (stack_a->stack_ar[stack_a->stacked - 1] > smallest && stack_a->stack_ar[stack_a->stacked - 1] > midpoint1)
 		{
-			if (stack_a->stack_ar[stack_a->stacked - 1] <= midpoint)
+			midpoint_b = 0;
+			i = 0;
+			while (i < stack_b->stacked)
+			{
+				midpoint_b += stack_b->stack_ar[i];
+				i++;
+			}
+			if (i != 0)
+			midpoint_b /= i;
+			if (stack_a->stack_ar[stack_a->stacked - 1] <= midpoint1)
+			{
 				pb(stack_b, stack_a);
-			if (smallest_i >= stack_a->stacked / 2)
+				if (stack_b->stack_ar[stack_b->stacked - 1] < midpoint_b)
+					rb(stack_b);
+			}
+			else if (smallest_i >= stack_a->stacked / 2)
 					ra(stack_a);
 			else
 					rra(stack_a);
 		}
 		pb(stack_b, stack_a);
+		if (stack_b->stack_ar[stack_b->stacked - 1] < midpoint_b)
+			rb(stack_b);
 	}
 	while (stack_b->stacked)
 	{
