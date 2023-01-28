@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 12:31:19 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/01/28 15:46:40 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/01/28 16:31:48 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,28 +106,49 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 	int	smalln;
 	int	at_back;
 	int	len;
+	int	ratio;
+	int	point;
+	int	half_count;
+	int	half;
 
 	number = find_big(stack_a);
 	number_i = find_big_i(stack_a);
 	len = find_total(stack_a);
 	if (!sorted(stack_a) && stack_a->stack_ar[0] == number)
 		ra(stack_a);
+	ratio = number / 6;
+	half_count = (len / 6) / 2;
+	point = ratio;
 	while (stack_a->stacked)
 	{
-		//ft_printf("sorted:%d\n", sorted(stack_a));
-		at_back = stack_a->stacked;
 		if (sorted(stack_a))
-			break ;
-		if (stack_a->stack_ar[stack_a->stacked - 1] > stack_a->stack_ar[0] && stack_a->stack_ar[stack_a->stacked - 1] != number)
-			if (number_i  > len / 2)
+				break ;
+		i = -1;
+		half = 0;
+		while (++i < stack_a->stacked)
+		{
+			if (sorted(stack_a))
+				break ;
+			if (stack_a->stack_ar[stack_a->stacked - 1] > stack_a->stack_ar[0] && stack_a->stack_ar[stack_a->stacked - 1] != number)
+				if (number_i  > len / 2)
+					ra(stack_a);
+				else
+					rra(stack_a);
+			if (stack_a->stack_ar[stack_a->stacked - 1] < point)
+			{
+				pb(stack_b, stack_a);
+				if (half > half_count)
+					rb(stack_b);
+				half++;
+			}
+			else if (number_i  > len / 2)
 				ra(stack_a);
 			else
 				rra(stack_a);
-		pb(stack_b, stack_a);
+		}
+		point += ratio;
 	}
-/////* Sort from b to a
-/////!when last one in stack a is the number
-//!When the biggest is at the bottom of the at_back it doesnt sort
+	at_back = stack_a->stacked;
 	number = find_big(stack_b);
 	if (number < find_big(stack_a))
 		big_of_two = find_big(stack_a);
@@ -158,26 +179,23 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 		}
 		pa(stack_a, stack_b);
 		i = 0;
-		while (i < at_back)
+		while (i < at_back && !sorted(stack_a))
 		{
 			if (stack_b->stacked)
 				smalln = find_small(stack_b);
 			else
 				smalln = -2147483648;
 			number = find_big(stack_b);
-			//ft_printf("arr0: %d\nnumber: %d\n (stacked-1): %d\n", stack_a->stack_ar[0], number, stack_a->stack_ar[stack_a->stacked - 1]);
 			if ((stack_a->stack_ar[0] < stack_a->stack_ar[stack_a->stacked - 1]
 				&& stack_a->stack_ar[0] - stack_a->stack_ar[stack_a->stacked - 1] > number - stack_a->stack_ar[stack_a->stacked - 1]))
 				rra(stack_a);
-			// if (stack_a->stack_ar[stack_a->stacked - 1] > stack_a->stack_ar[stack_a->stacked - 2])
-			// 	sa(stack_a);
 			if (stack_a->stack_ar[stack_a->stacked - 1] == find_small(stack_a) && stack_a->stack_ar[stack_a->stacked - 1] < smalln)
 				ra(stack_a);
 			i++;
 		}
 	}
 	i = 0;
-	while (i < at_back)
+	while (i < at_back && !sorted(stack_a))
 	{
 		if (stack_a->stack_ar[0] < stack_a->stack_ar[stack_a->stacked - 1] && !stack_b->stacked)
 				rra(stack_a);
