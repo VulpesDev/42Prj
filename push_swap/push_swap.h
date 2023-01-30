@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 12:33:23 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/01/24 13:58:14 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/01/30 14:42:25 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
 # define INT_MAX_COUNT 10
-# define STACK_SIZE 1000
-# define MAX(x, y) x > y ? x : y 
+# define STACK_SIZE 2000
+# include <stdlib.h>
 
 typedef struct s_stack{
 	int	stack_ar[STACK_SIZE];
@@ -43,8 +43,8 @@ void	pa(t_stack *stack_a, t_stack *stack_b);
 void	pb(t_stack *stack_b, t_stack *stack_a);
 void	ra(t_stack *stack_a);
 void	rb(t_stack *stack_b);
-void	rr(t_stack *stack_a, t_stack *stack_b);
 void	rra(t_stack *stack_a);
 void	rrb(t_stack *stack_b);
-void	rrr(t_stack *stack_a, t_stack *stack_b);
+//* ADVANCED FUNCTIONS
+void	to_print(char *str);
 #endif
