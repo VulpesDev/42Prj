@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 12:31:19 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/01/30 15:16:33 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/01/30 17:33:53 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,16 @@ void	to_print(char *str)
 				ft_printf("rrr\n");
 				skip++;
 			}
+			else if ((!ft_strncmp(str, "ra", 3) && !ft_strncmp(result, "rra", 3))
+			|| (!ft_strncmp(str, "rrb", 3) && !ft_strncmp(result, "rb", 3)))
+			{
+				skip++;
+			}
+			else if ((!ft_strncmp(str, "rra", 3) && !ft_strncmp(result, "ra", 3))
+			|| (!ft_strncmp(str, "rb", 3) && !ft_strncmp(result, "rrb", 3)))
+			{
+				skip++;
+			}
 			else
 				ft_printf("%s", result);
 			free(result);
@@ -257,6 +267,8 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 	int	first;
 	int	magic_num;
 
+	if (sorted(stack_a))
+		return ;
 	number = find_big(stack_a);
 	number_i = find_small_i(stack_a);
 	len = find_total(stack_a);
@@ -371,7 +383,7 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 	}
 	to_print(" ");
 }
-
+#include<stdio.h>
 int	main(int argc, char **argv)
 {
 	int		i;
