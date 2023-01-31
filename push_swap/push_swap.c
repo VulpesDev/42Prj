@@ -6,249 +6,11 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 12:31:19 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/01/30 17:33:53 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/01/31 17:30:18 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	find_small(t_stack *stack)
-{
-	int	i;
-	int	result;
-
-	i = 0;
-	result = stack->stack_ar[stack->stacked - 1];
-	while (i < stack->stacked - 1)
-	{
-		if (stack->stack_ar[i] < result)
-			result = stack->stack_ar[i];
-		i++;
-	}
-	return (result);
-}
-
-int	find_small_i(t_stack *stack)
-{
-	int	i;
-	int	small_i;
-
-	i = 0;
-	small_i = stack->stacked - 1;
-	while (i < stack->stacked - 1)
-	{
-		if (stack->stack_ar[i] < stack->stack_ar[small_i])
-			small_i = i;
-		i++;
-	}
-	return (small_i);
-}
-
-int	find_big(t_stack *stack)
-{
-	int	i;
-	int	result;
-
-	i = 0;
-	result = stack->stack_ar[stack->stacked - 1];
-	while (i < stack->stacked)
-	{
-		if (stack->stack_ar[i] > result)
-			result = stack->stack_ar[i];
-		i++;
-	}
-	return (result);
-}
-
-int	find_big_i(t_stack *stack)
-{
-	int	i;
-	int	big_i;
-
-	i = 0;
-	big_i = stack->stacked - 1;
-	while (i < stack->stacked)
-	{
-		if (stack->stack_ar[i] > stack->stack_ar[big_i])
-			big_i = i;
-		i++;
-	}
-	return (big_i);
-}
-
-int	sorted(t_stack *stack)
-{
-	int	i;
-
-	i = -1;
-	while (++i < stack->stacked - 1)
-		if (stack->stack_ar[i] < stack->stack_ar[i + 1])
-			return (0);
-	return (1);
-}
-
-unsigned int	find_total(t_stack *stack)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (i < stack->stacked)
-		i++;
-	return (i);
-}
-
-int	find_closest(t_stack *stack, int point, int len)
-{
-	int	start;
-	int	end;
-
-	start = 0;
-	end = stack->stacked - 1;
-	while (stack->stack_ar[start] > point)
-		start++;
-	while (stack->stack_ar[end] > point)
-		end--;
-	end = stack->stacked - end;
-	return (end > start);
-}
-
-int	is_val_under(t_stack *stack, int point)
-{
-	int	i;
-
-	i = 0;
-	while (i < stack->stacked)
-	{
-		if (stack->stack_ar[i] < point)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-void	to_print(char *str)
-{
-	static char	*result;
-	static int	skip;
-
-	if(!skip)
-	{
-		if (result)
-		{
-			if ((!ft_strncmp(str, "ra", 2) && !ft_strncmp(result, "rb", 2))
-			|| (!ft_strncmp(str, "rb", 2) && !ft_strncmp(result, "ra", 2)))
-			{
-				ft_printf("rr\n");
-				skip++;
-			}
-			else if ((!ft_strncmp(str, "rra", 3) && !ft_strncmp(result, "rrb", 3))
-			|| (!ft_strncmp(str, "rrb", 3) && !ft_strncmp(result, "rra", 3)))
-			{
-				ft_printf("rrr\n");
-				skip++;
-			}
-			else if ((!ft_strncmp(str, "ra", 3) && !ft_strncmp(result, "rra", 3))
-			|| (!ft_strncmp(str, "rrb", 3) && !ft_strncmp(result, "rb", 3)))
-			{
-				skip++;
-			}
-			else if ((!ft_strncmp(str, "rra", 3) && !ft_strncmp(result, "ra", 3))
-			|| (!ft_strncmp(str, "rb", 3) && !ft_strncmp(result, "rrb", 3)))
-			{
-				skip++;
-			}
-			else
-				ft_printf("%s", result);
-			free(result);
-		}
-	}
-	else
-	{
-		skip++;
-		if (skip > 1)
-			skip = 0;
-		free(result);
-	}
-	result = ft_strdup(str);
-	if (*result == ' ')
-		free(result);
-}
-
-int	find_small_point(t_stack *stack, int point)
-{
-	int	top;
-	int	bot;
-
-	top = stack->stacked - 1;
-	bot = 0;
-	while (bot < stack->stacked - 1)
-	{
-		if (stack->stack_ar[bot++] < point)
-			break ;
-	}
-	while (top >= 0)
-	{
-		if (stack->stack_ar[top--] < point)
-			break;
-	}
-	if ((stack->stacked - 1) - top < bot)
-		return (1);
-	return (0);
-}
-
-int	find_small_i_big_than(t_stack *stack, int bigger)
-{
-	int	i;
-	int	small_i;
-
-	i = 0;
-	while (stack->stack_ar[i] <= bigger && i < stack->stacked)
-		i++;
-	small_i = i;
-	i = 0;
-	while (i < stack->stacked)
-	{
-		if (stack->stack_ar[i] < stack->stack_ar[small_i] && stack->stack_ar[i] > bigger)
-			small_i = i;
-		i++;
-	}
-	return (small_i);
-}
-
-t_stack	convert_to_seq(t_stack stack)
-{
-	// unsigned int	len;
-	// unsigned int	counter;
-	// int	lastnum;
-
-	// counter = 0;
-	// len = find_total(stack);
-	// while (counter < (signed int)len)
-	// {
-	// 	lastnum = stack->stack_ar[find_small_i(stack)];
-	// 	if (lastnum < 0)
-	// 		stack->stack_ar[find_small_i(stack)] = counter;
-	// 	else
-	// 		stack->stack_ar[find_small_i_big_than(stack, counter - 1)] = counter;
-	// 	counter++;
-	// }
-	t_stack	new;
-	int	len;
-	int	counter;
-	int	small_i;
-	
-	len = find_total(&stack);
-	counter = 0;
-	small_i = find_small_i(&stack);
-	while (counter < len)
-	{
-		new.stack_ar[small_i] = counter;
-		small_i = find_small_i_big_than(&stack, stack.stack_ar[small_i]);
-		new.stacked++;
-		counter++;
-	}
-	return (new);
-}
 
 void	sort(t_stack *stack_a, t_stack *stack_b)
 {
@@ -305,7 +67,7 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 			if (stack_a->stack_ar[stack_a->stacked - 1] < point)
 			{
 				pb(stack_b, stack_a);
-				if (half > half_count && !first)
+				if (stack_b->stack_ar[stack_b->stacked - 1] < point / 2) //! Make it so its the middle of the ratio part and not the middle of whole point
 					rb(stack_b);
 				half++;
 			}
@@ -343,6 +105,7 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 		else
 			big_of_two = number;
 		number_i = find_big_i(stack_b);
+		//? What am I doing here? maybe check for smallest number to pass first or not
 			if ((big_of_two == stack_a->stack_ar[0] || stack_b->stack_ar[stack_b->stacked - 1] > stack_a->stack_ar[0])
 				&& stack_b->stack_ar[stack_b->stacked - 1] != number)
 			{

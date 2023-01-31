@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 12:33:23 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/01/30 14:42:25 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/01/31 11:24:29 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,18 @@ void	ra(t_stack *stack_a);
 void	rb(t_stack *stack_b);
 void	rra(t_stack *stack_a);
 void	rrb(t_stack *stack_b);
-//* ADVANCED FUNCTIONS
+//* FIND FUNCTIONS
+int	find_small(t_stack *stack);
+int	find_small_i(t_stack *stack);
+int	find_big(t_stack *stack);
+int	find_big_i(t_stack *stack);
+unsigned int	find_total(t_stack *stack);
+int	find_closest(t_stack *stack, int point, int len);
+int	find_small_point(t_stack *stack, int point);
+int	find_small_i_big_than(t_stack *stack, int bigger);
+//* OTHER FUNCTIONS
 void	to_print(char *str);
+int	sorted(t_stack *stack);
+int	is_val_under(t_stack *stack, int point);
+t_stack	convert_to_seq(t_stack stack);
 #endif
