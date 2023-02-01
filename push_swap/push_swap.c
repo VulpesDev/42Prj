@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 12:31:19 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/01/31 17:30:18 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/01 12:06:49 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,13 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 	unsigned int	len;
 	int	ratio;
 	int	point;
-	int	half_count;
-	int	half;
-	int	closest;
-	int	first;
 	int	magic_num;
 
 	if (sorted(stack_a))
 		return ;
-	number = find_big(stack_a);
-	number_i = find_small_i(stack_a);
-	len = find_total(stack_a);
+	number = find_num(stack_a, 1);
+	number_i = find_num_i(stack_a, 0);
+	len = stack_a->stacked;
 	if (!sorted(stack_a) && stack_a->stack_ar[0] == number)
 		ra(stack_a);
 	if (len < 60)
@@ -43,16 +39,13 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 	else
 		magic_num = 8;
 	ratio = number / magic_num;
-	half_count = (len / magic_num) / 2;
 	point = ratio;
-	first = 1;
 
 	while (stack_a->stacked)
 	{
 		if (sorted(stack_a))
 				break ;
 		i = -1;
-		half = 0;
 		while (++i < stack_a->stacked)
 		{
 			if (!is_val_under(stack_a, point))
@@ -67,22 +60,20 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 			if (stack_a->stack_ar[stack_a->stacked - 1] < point)
 			{
 				pb(stack_b, stack_a);
-				if (stack_b->stack_ar[stack_b->stacked - 1] < point / 2) //! Make it so its the middle of the ratio part and not the middle of whole point
+				if (stack_b->stack_ar[stack_b->stacked - 1] - (point - ratio) > (point - (point - ratio)) / 2)
 					rb(stack_b);
-				half++;
 			}
 			else if (find_small_point(stack_a, point))
 				ra(stack_a);
 			else
 				rra(stack_a);
 		}
-		first = 0;
 		point += ratio;
 	}
 	at_back = stack_a->stacked;
-	number = find_big(stack_b);
-	if (number < find_big(stack_a))
-		big_of_two = find_big(stack_a);
+	number = find_num(stack_b, 1);
+	if (number < find_num(stack_a, 1))
+		big_of_two = find_num(stack_a, 1);
 	else
 		big_of_two = number;
 	if (!sorted(stack_a) && stack_a->stack_ar[0] == big_of_two)
@@ -99,13 +90,12 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 	{
 		while (stack_b->stack_ar[stack_b->stacked - 1] < number)
 		{
-			number = find_big(stack_b);
-		if (number < find_big(stack_a))
-			big_of_two = find_big(stack_a);
+			number = find_num(stack_b, 1);
+		if (number < find_num(stack_a, 1))
+			big_of_two = find_num(stack_a, 1);
 		else
 			big_of_two = number;
-		number_i = find_big_i(stack_b);
-		//? What am I doing here? maybe check for smallest number to pass first or not
+		number_i = find_num_i(stack_b, 1);
 			if ((big_of_two == stack_a->stack_ar[0] || stack_b->stack_ar[stack_b->stacked - 1] > stack_a->stack_ar[0])
 				&& stack_b->stack_ar[stack_b->stacked - 1] != number)
 			{
@@ -125,14 +115,14 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 		while (i < at_back && !sorted(stack_a))
 		{
 			if (stack_b->stacked)
-				smalln = find_small(stack_b);
+				smalln = find_num(stack_b, 0);
 			else
 				smalln = -2147483648;
-			number = find_big(stack_b);
+			number = find_num(stack_b, 1);
 			if ((stack_a->stack_ar[0] < stack_a->stack_ar[stack_a->stacked - 1]
 				&& stack_a->stack_ar[0] - stack_a->stack_ar[stack_a->stacked - 1] > number - stack_a->stack_ar[stack_a->stacked - 1]))
 				rra(stack_a);
-			if (stack_a->stack_ar[stack_a->stacked - 1] == find_small(stack_a) && stack_a->stack_ar[stack_a->stacked - 1] < smalln)
+			if (stack_a->stack_ar[stack_a->stacked - 1] == find_num(stack_a, 0) && stack_a->stack_ar[stack_a->stacked - 1] < smalln)
 				ra(stack_a);
 			i++;
 		}
@@ -166,7 +156,6 @@ int	main(int argc, char **argv)
 		}
 		stack_a = convert_to_seq(stack_a);
 		sort(&stack_a, &stack_b);
-		//display(stack_a);
 	}
 	return (0);
 }

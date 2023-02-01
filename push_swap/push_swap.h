@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 12:33:23 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/01/31 11:24:29 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/01 12:05:37 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,21 @@ void	rb(t_stack *stack_b);
 void	rra(t_stack *stack_a);
 void	rrb(t_stack *stack_b);
 //* FIND FUNCTIONS
-int	find_small(t_stack *stack);
-int	find_small_i(t_stack *stack);
-int	find_big(t_stack *stack);
-int	find_big_i(t_stack *stack);
-unsigned int	find_total(t_stack *stack);
-int	find_closest(t_stack *stack, int point, int len);
+//returns the value of either the biggest or smallest number in stack (depends on int big)
+int	find_num(t_stack *stack, int big);
+//returns the index of either the biggest or smallest number in stack (depends on int big)
+int	find_num_i(t_stack *stack, int big);
+//determines the best move for stack, either the value needed to be passed to b is closer to the top or the bottom (returns 0 or 1)
 int	find_small_point(t_stack *stack, int point);
+//returns the index of the smallest number in stack bigger than bigger
 int	find_small_i_big_than(t_stack *stack, int bigger);
 //* OTHER FUNCTIONS
+//combines steps if possible, removes unnecessary instructions
 void	to_print(char *str);
+//returns 1 if the stack is sorted and 0 otherwise
 int	sorted(t_stack *stack);
+//checks if there is a value thats less than point in stack (either 1 or 0)
 int	is_val_under(t_stack *stack, int point);
+//replaces the values of stack with indexes going from 0-maxint
 t_stack	convert_to_seq(t_stack stack);
 #endif

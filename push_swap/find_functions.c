@@ -6,13 +6,14 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 10:35:12 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/01/31 11:23:49 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/01 12:04:48 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	find_small(t_stack *stack)
+
+int	find_num(t_stack *stack, int big)
 {
 	int	i;
 	int	result;
@@ -21,84 +22,31 @@ int	find_small(t_stack *stack)
 	result = stack->stack_ar[stack->stacked - 1];
 	while (i < stack->stacked - 1)
 	{
-		if (stack->stack_ar[i] < result)
+		if (stack->stack_ar[i] < result && !big)
+			result = stack->stack_ar[i];
+		else if (stack->stack_ar[i] > result && big)
 			result = stack->stack_ar[i];
 		i++;
 	}
 	return (result);
 }
 
-int	find_small_i(t_stack *stack)
+int	find_num_i(t_stack *stack, int big)
 {
 	int	i;
-	int	small_i;
+	int	num_i;
 
 	i = 0;
-	small_i = stack->stacked - 1;
+	num_i = stack->stacked - 1;
 	while (i < stack->stacked - 1)
 	{
-		if (stack->stack_ar[i] < stack->stack_ar[small_i])
-			small_i = i;
+		if (stack->stack_ar[i] < stack->stack_ar[num_i] && !big)
+			num_i = i;
+		else if (stack->stack_ar[i] > stack->stack_ar[num_i] && big)
+			num_i = i;
 		i++;
 	}
-	return (small_i);
-}
-
-int	find_big(t_stack *stack)
-{
-	int	i;
-	int	result;
-
-	i = 0;
-	result = stack->stack_ar[stack->stacked - 1];
-	while (i < stack->stacked)
-	{
-		if (stack->stack_ar[i] > result)
-			result = stack->stack_ar[i];
-		i++;
-	}
-	return (result);
-}
-
-int	find_big_i(t_stack *stack)
-{
-	int	i;
-	int	big_i;
-
-	i = 0;
-	big_i = stack->stacked - 1;
-	while (i < stack->stacked)
-	{
-		if (stack->stack_ar[i] > stack->stack_ar[big_i])
-			big_i = i;
-		i++;
-	}
-	return (big_i);
-}
-
-unsigned int	find_total(t_stack *stack)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (i < stack->stacked)
-		i++;
-	return (i);
-}
-
-int	find_closest(t_stack *stack, int point, int len)
-{
-	int	start;
-	int	end;
-
-	start = 0;
-	end = stack->stacked - 1;
-	while (stack->stack_ar[start] > point)
-		start++;
-	while (stack->stack_ar[end] > point)
-		end--;
-	end = stack->stacked - end;
-	return (end > start);
+	return (num_i);
 }
 
 int	find_small_point(t_stack *stack, int point)
@@ -126,18 +74,18 @@ int	find_small_point(t_stack *stack, int point)
 int	find_small_i_big_than(t_stack *stack, int bigger)
 {
 	int	i;
-	int	small_i;
+	int	num_i;
 
 	i = 0;
 	while (stack->stack_ar[i] <= bigger && i < stack->stacked)
 		i++;
-	small_i = i;
+	num_i = i;
 	i = 0;
 	while (i < stack->stacked)
 	{
-		if (stack->stack_ar[i] < stack->stack_ar[small_i] && stack->stack_ar[i] > bigger)
-			small_i = i;
+		if (stack->stack_ar[i] < stack->stack_ar[num_i] && stack->stack_ar[i] > bigger)
+			num_i = i;
 		i++;
 	}
-	return (small_i);
+	return (num_i);
 }
