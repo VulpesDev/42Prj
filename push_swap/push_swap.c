@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 12:31:19 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/01 12:06:49 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/01 18:23:39 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 	int	number_i;
 	int	smalln;
 	int	at_back;
-	unsigned int	len;
+	int	len;
+	int	len_a;
 	int	ratio;
 	int	point;
 	int	magic_num;
@@ -40,7 +41,8 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 		magic_num = 8;
 	ratio = number / magic_num;
 	point = ratio;
-
+	stack_a->stacked = stack_a->stacked;
+	stack_b->stacked = stack_b->stacked;
 	while (stack_a->stacked)
 	{
 		if (sorted(stack_a))
@@ -91,11 +93,11 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 		while (stack_b->stack_ar[stack_b->stacked - 1] < number)
 		{
 			number = find_num(stack_b, 1);
-		if (number < find_num(stack_a, 1))
-			big_of_two = find_num(stack_a, 1);
-		else
-			big_of_two = number;
-		number_i = find_num_i(stack_b, 1);
+			if (number < find_num(stack_a, 1))
+				big_of_two = find_num(stack_a, 1);
+			else
+				big_of_two = number;
+			number_i = find_num_i(stack_b, 1);
 			if ((big_of_two == stack_a->stack_ar[0] || stack_b->stack_ar[stack_b->stacked - 1] > stack_a->stack_ar[0])
 				&& stack_b->stack_ar[stack_b->stacked - 1] != number)
 			{
@@ -103,12 +105,15 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 				pa(stack_a, stack_b);
 				ra(stack_a);
 			}
-			if (stack_b->stack_ar[stack_b->stacked - 2] == number)
-				sb(stack_b);
-			else if (number_i >= stack_b->stacked / 2)
-				rb(stack_b);
-			else
-				rrb(stack_b);
+			if (stack_b->stacked > 1)
+			{
+				if (stack_b->stack_ar[stack_b->stacked - 2] == number)
+					sb(stack_b);
+				else if (number_i >= stack_b->stacked / 2)
+					rb(stack_b);
+				else
+					rrb(stack_b);
+			}
 		}
 		pa(stack_a, stack_b);
 		i = 0;
@@ -119,11 +124,14 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 			else
 				smalln = -2147483648;
 			number = find_num(stack_b, 1);
-			if ((stack_a->stack_ar[0] < stack_a->stack_ar[stack_a->stacked - 1]
-				&& stack_a->stack_ar[0] - stack_a->stack_ar[stack_a->stacked - 1] > number - stack_a->stack_ar[stack_a->stacked - 1]))
-				rra(stack_a);
-			if (stack_a->stack_ar[stack_a->stacked - 1] == find_num(stack_a, 0) && stack_a->stack_ar[stack_a->stacked - 1] < smalln)
-				ra(stack_a);
+			if (stack_a->stacked > 0)
+			{
+				if ((stack_a->stack_ar[0] < stack_a->stack_ar[stack_a->stacked - 1])
+					&& ((stack_a->stack_ar[0] - stack_a->stack_ar[stack_a->stacked - 1]) > (number - stack_a->stack_ar[stack_a->stacked - 1])))
+					rra(stack_a);
+				if (stack_a->stack_ar[stack_a->stacked - 1] == find_num(stack_a, 0) && stack_a->stack_ar[stack_a->stacked - 1] < smalln)
+					ra(stack_a);
+			}
 			i++;
 		}
 	}

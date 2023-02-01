@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 10:35:12 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/01 12:04:48 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/01 18:00:16 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ int	find_num(t_stack *stack, int big)
 {
 	int	i;
 	int	result;
+	int	len;
 
 	i = 0;
 	result = stack->stack_ar[stack->stacked - 1];
-	while (i < stack->stacked - 1)
+	len = stack->stacked - 1;
+	while (i < len)
 	{
 		if (stack->stack_ar[i] < result && !big)
 			result = stack->stack_ar[i];
@@ -35,10 +37,12 @@ int	find_num_i(t_stack *stack, int big)
 {
 	int	i;
 	int	num_i;
+	int	len;
 
 	i = 0;
 	num_i = stack->stacked - 1;
-	while (i < stack->stacked - 1)
+	len = stack->stacked - 1;
+	while (i < len)
 	{
 		if (stack->stack_ar[i] < stack->stack_ar[num_i] && !big)
 			num_i = i;
@@ -75,13 +79,15 @@ int	find_small_i_big_than(t_stack *stack, int bigger)
 {
 	int	i;
 	int	num_i;
+	int	len;
 
 	i = 0;
-	while (stack->stack_ar[i] <= bigger && i < stack->stacked)
+	len = stack->stacked;
+	while (stack->stack_ar[i] <= bigger && i < len)
 		i++;
 	num_i = i;
 	i = 0;
-	while (i < stack->stacked)
+	while (i < len)
 	{
 		if (stack->stack_ar[i] < stack->stack_ar[num_i] && stack->stack_ar[i] > bigger)
 			num_i = i;
