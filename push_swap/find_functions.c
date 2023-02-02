@@ -6,12 +6,11 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 10:35:12 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/01 18:00:16 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/02 17:04:03 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 int	find_num(t_stack *stack, int big)
 {
@@ -68,7 +67,7 @@ int	find_small_point(t_stack *stack, int point)
 	while (top >= 0)
 	{
 		if (stack->stack_ar[top--] < point)
-			break;
+			break ;
 	}
 	if ((stack->stacked - 1) - top < bot)
 		return (1);
@@ -89,7 +88,8 @@ int	find_small_i_big_than(t_stack *stack, int bigger)
 	i = 0;
 	while (i < len)
 	{
-		if (stack->stack_ar[i] < stack->stack_ar[num_i] && stack->stack_ar[i] > bigger)
+		if (stack->stack_ar[i] < stack->stack_ar[num_i]
+			&& stack->stack_ar[i] > bigger)
 			num_i = i;
 		i++;
 	}

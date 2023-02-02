@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:22:44 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/01 17:50:23 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/02 17:12:42 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,41 @@ int	is_val_under(t_stack *stack, int point)
 	i = 0;
 	while (i < stack->stacked)
 	{
-		if (stack->stack_ar[i] < point)
+		if (stack->stack_ar[i] <= point)
 			return (1);
 		i++;
 	}
 	return (0);
+}
+
+void	conditions_for_to_print(char **str, char **result, int *skip)
+{
+	if ((!ft_strncmp(*str, "ra", 2) && !ft_strncmp(*result, "rb", 2))
+		|| (!ft_strncmp(*str, "rb", 2) && !ft_strncmp(*result, "ra", 2)))
+	{
+		ft_printf("rr\n");
+		skip[0]++;
+	}
+	else if (((!ft_strncmp(*str, "rra", 3)
+				&& !ft_strncmp(*result, "rrb", 3))
+			|| (!ft_strncmp(*str, "rrb", 3)
+				&& !ft_strncmp(*result, "rra", 3))))
+	{
+		ft_printf("rrr\n");
+		skip[0]++;
+	}
+	else if (((!ft_strncmp(*str, "ra", 3)
+				&& !ft_strncmp(*result, "rra", 3))
+			|| (!ft_strncmp(*str, "rrb", 3)
+				&& !ft_strncmp(*result, "rb", 3)))
+		|| ((!ft_strncmp(*str, "rra", 3)
+				&& !ft_strncmp(*result, "ra", 3))
+			|| (!ft_strncmp(*str, "rb", 3)
+				&& !ft_strncmp(*result, "rrb", 3))))
+		skip[0]++;
+	else
+		ft_printf("%s", *result);
+	free(*result);
 }
 
 void	to_print(char *str)
@@ -42,35 +72,11 @@ void	to_print(char *str)
 	static char	*result;
 	static int	skip;
 
-	if(!skip)
+	if (!skip)
 	{
 		if (result)
 		{
-			if ((!ft_strncmp(str, "ra", 2) && !ft_strncmp(result, "rb", 2))
-			|| (!ft_strncmp(str, "rb", 2) && !ft_strncmp(result, "ra", 2)))
-			{
-				ft_printf("rr\n");
-				skip++;
-			}
-			else if ((!ft_strncmp(str, "rra", 3) && !ft_strncmp(result, "rrb", 3))
-			|| (!ft_strncmp(str, "rrb", 3) && !ft_strncmp(result, "rra", 3)))
-			{
-				ft_printf("rrr\n");
-				skip++;
-			}
-			else if ((!ft_strncmp(str, "ra", 3) && !ft_strncmp(result, "rra", 3))
-			|| (!ft_strncmp(str, "rrb", 3) && !ft_strncmp(result, "rb", 3)))
-			{
-				skip++;
-			}
-			else if ((!ft_strncmp(str, "rra", 3) && !ft_strncmp(result, "ra", 3))
-			|| (!ft_strncmp(str, "rb", 3) && !ft_strncmp(result, "rrb", 3)))
-			{
-				skip++;
-			}
-			else
-				ft_printf("%s", result);
-			free(result);
+			conditions_for_to_print(&str, &result, &skip);
 		}
 	}
 	else
@@ -88,10 +94,10 @@ void	to_print(char *str)
 t_stack	convert_to_seq(t_stack stack)
 {
 	t_stack	new;
-	int	len;
-	int	counter;
-	int	small_i;
-	
+	int		len;
+	int		counter;
+	int		small_i;
+
 	len = stack.stacked;
 	counter = 0;
 	new.stacked = 0;
