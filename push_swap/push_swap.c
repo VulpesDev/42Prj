@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 12:31:19 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/02 17:01:32 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/02 17:48:17 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	get_magic_num(int len)
 int	get_big_of_two(t_stack *stack, int number)
 {
 	if (number < find_num(stack, 1))
-		return(find_num(stack, 1));
+		return (find_num(stack, 1));
 	else
 		return (number);
 }
@@ -52,17 +52,20 @@ void	push_a_2_b(t_stack *stack_a, t_stack *stack_b)
 	while (stack_a->stacked)
 	{
 		if (sorted(stack_a))
-				break ;
+			break ;
 		while (is_val_under(stack_a, point))
 		{
 			if (sorted(stack_a))
 				break ;
-			if (stack_a->stack_ar[stack_a->stacked - 1] > stack_a->stack_ar[0] && stack_a->stack_ar[stack_a->stacked - 1] != number)
+			if (stack_a->stack_ar[stack_a->stacked - 1] > stack_a->stack_ar[0]
+				&& stack_a->stack_ar[stack_a->stacked - 1] != number)
 				choose_best_move(stack_a, point);
 			if (stack_a->stack_ar[stack_a->stacked - 1] <= point)
 			{
 				pb(stack_b, stack_a);
-				if (stack_b->stack_ar[stack_b->stacked - 1] - (point - ratio) > (point - (point - ratio)) / 2)
+				if (stack_b->stack_ar[stack_b->stacked - 1]
+					- (point - ratio)
+					> (point - (point - ratio)) / 2)
 					rb(stack_b);
 			}
 			else
@@ -88,7 +91,9 @@ void	push_b_2_a(t_stack *stack_a, t_stack *stack_b, int *at_back)
 			number = find_num(stack_b, 1);
 			big_of_two = get_big_of_two(stack_a, number);
 			number_i = find_num_i(stack_b, 1);
-			if ((big_of_two == stack_a->stack_ar[0] || stack_b->stack_ar[stack_b->stacked - 1] > stack_a->stack_ar[0])
+			if ((big_of_two == stack_a->stack_ar[0]
+					|| stack_b->stack_ar[stack_b->stacked - 1]
+					> stack_a->stack_ar[0])
 				&& stack_b->stack_ar[stack_b->stacked - 1] != number)
 			{
 				at_back[0] = at_back[0] + 1;
@@ -116,10 +121,15 @@ void	push_b_2_a(t_stack *stack_a, t_stack *stack_b, int *at_back)
 			number = find_num(stack_b, 1);
 			if (stack_a->stacked > 0)
 			{
-				if ((stack_a->stack_ar[0] < stack_a->stack_ar[stack_a->stacked - 1])
-					&& ((stack_a->stack_ar[0] - stack_a->stack_ar[stack_a->stacked - 1]) > (number - stack_a->stack_ar[stack_a->stacked - 1])))
+				if ((stack_a->stack_ar[0]
+						< stack_a->stack_ar[stack_a->stacked - 1])
+					&& ((stack_a->stack_ar[0]
+							- stack_a->stack_ar[stack_a->stacked - 1])
+						> (number - stack_a->stack_ar[stack_a->stacked - 1])))
 					rra(stack_a);
-				if (stack_a->stack_ar[stack_a->stacked - 1] == find_num(stack_a, 0) && stack_a->stack_ar[stack_a->stacked - 1] < smalln)
+				if (stack_a->stack_ar[stack_a->stacked - 1]
+					== find_num(stack_a, 0)
+					&& stack_a->stack_ar[stack_a->stacked - 1] < smalln)
 					ra(stack_a);
 			}
 		}
@@ -141,24 +151,19 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 	push_a_2_b(stack_a, stack_b);
 	at_back = stack_a->stacked;
 	number = find_num(stack_b, 1);
-	i = 0;
-	while (i < at_back)
-	{
+	i = -1;
+	while (++i < at_back)
 		if (stack_a->stack_ar[0] > number)
 			rra(stack_a);
-		i++;
-	}
 	push_b_2_a(stack_a, stack_b, &at_back);
-	i = 0;
-	while (i < at_back && !sorted(stack_a))
-	{
-		if (stack_a->stack_ar[0] < stack_a->stack_ar[stack_a->stacked - 1] && !stack_b->stacked)
-				rra(stack_a);
-		i++;
-	}
+	i = -1;
+	while (++i < at_back && !sorted(stack_a))
+		if (stack_a->stack_ar[0] < stack_a->stack_ar[stack_a->stacked - 1]
+			&& !stack_b->stacked)
+			rra(stack_a);
 	to_print(" ");
 }
-#include<stdio.h>
+
 int	main(int argc, char **argv)
 {
 	int		i;

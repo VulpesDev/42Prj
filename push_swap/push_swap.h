@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 12:33:23 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/01 17:50:18 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/02 17:20:38 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ typedef struct s_stack{
 	int	stack_ar[STACK_SIZE];
 	int	stacked;
 }			t_stack;
+typedef struct s_stacks{
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+}			t_stacks;
 int		handle_errors(int argc, char **argv);
 long	ft_atol(const char *nptr);
 //* BAISC STACK FUNCTIONS

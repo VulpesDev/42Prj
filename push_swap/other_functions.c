@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:22:44 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/02 17:12:42 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/02 17:22:10 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	conditions_for_to_print(char **str, char **result, int *skip)
 		skip[0]++;
 	else
 		ft_printf("%s", *result);
-	free(*result);
 }
 
 void	to_print(char *str)
@@ -77,6 +76,7 @@ void	to_print(char *str)
 		if (result)
 		{
 			conditions_for_to_print(&str, &result, &skip);
+			free(result);
 		}
 	}
 	else

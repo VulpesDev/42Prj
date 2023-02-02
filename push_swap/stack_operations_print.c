@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 17:52:06 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/02 14:37:11 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/02 17:26:35 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,3 @@ void	pb(t_stack *stack_b, t_stack *stack_a)
 	to_print("pb\n");
 	p(stack_a, stack_b);
 }
-
