@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 12:31:19 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/02 17:48:17 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/02 18:12:06 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,48 +38,88 @@ void	choose_best_move(t_stack *stack, int point)
 		rra(stack);
 }
 
+int	a_2_b_help(t_stacks stacks, int number, int ratio, int point)
+{
+	if (sorted(stacks.stack_a))
+		return (1);
+	if (stacks.stack_a->stack_ar[stacks.stack_a->stacked - 1]
+		> stacks.stack_a->stack_ar[0]
+		&& stacks.stack_a->stack_ar[stacks.stack_a->stacked - 1]
+		!= number)
+		choose_best_move(stacks.stack_a, point);
+	if (stacks.stack_a->stack_ar[stacks.stack_a->stacked - 1]
+		<= point)
+	{
+		pb(stacks.stack_b, stacks.stack_a);
+		if (stacks.stack_b->stack_ar[stacks.stack_b->stacked - 1]
+			- (point - ratio)
+			> (point - (point - ratio)) / 2)
+			rb(stacks.stack_b);
+	}
+	else
+		choose_best_move(stacks.stack_a, point);
+	return (0);
+}
+
 void	push_a_2_b(t_stack *stack_a, t_stack *stack_b)
 {
-	int	len;
-	int	ratio;
-	int	point;
-	int	number;
+	t_stacks	stacks;
+	int			len;
+	int			ratio;
+	int			point;
+	int			number;
 
 	number = find_num(stack_a, 1);
 	len = stack_a->stacked;
 	ratio = number / get_magic_num(len);
 	point = ratio;
+	stacks.stack_a = stack_a;
+	stacks.stack_b = stack_b;
 	while (stack_a->stacked)
 	{
 		if (sorted(stack_a))
 			break ;
 		while (is_val_under(stack_a, point))
 		{
-			if (sorted(stack_a))
+			if (a_2_b_help(stacks, number, ratio, point))
 				break ;
-			if (stack_a->stack_ar[stack_a->stacked - 1] > stack_a->stack_ar[0]
-				&& stack_a->stack_ar[stack_a->stacked - 1] != number)
-				choose_best_move(stack_a, point);
-			if (stack_a->stack_ar[stack_a->stacked - 1] <= point)
-			{
-				pb(stack_b, stack_a);
-				if (stack_b->stack_ar[stack_b->stacked - 1]
-					- (point - ratio)
-					> (point - (point - ratio)) / 2)
-					rb(stack_b);
-			}
-			else
-				choose_best_move(stack_a, point);
 		}
 		point += ratio;
 	}
 }
 
-void	push_b_2_a(t_stack *stack_a, t_stack *stack_b, int *at_back)
+void	check_back(t_stack *stack_a, t_stack *stack_b, int *at_b, int *num)
 {
 	int	i;
-	int	big_of_two;
 	int	smalln;
+
+	i = -1;
+	while (i++ < *at_b && !sorted(stack_a))
+	{
+		if (stack_b->stacked)
+			smalln = find_num(stack_b, 0);
+		else
+			smalln = -2147483648;
+		num[0] = find_num(stack_b, 1);
+		if (stack_a->stacked > 0)
+		{
+			if ((stack_a->stack_ar[0]
+					< stack_a->stack_ar[stack_a->stacked - 1])
+				&& ((stack_a->stack_ar[0]
+						- stack_a->stack_ar[stack_a->stacked - 1])
+					> (num[0] - stack_a->stack_ar[stack_a->stacked - 1])))
+				rra(stack_a);
+			if (stack_a->stack_ar[stack_a->stacked - 1]
+				== find_num(stack_a, 0)
+				&& stack_a->stack_ar[stack_a->stacked - 1] < smalln)
+				ra(stack_a);
+		}
+	}
+}
+
+void	push_b_2_a(t_stack *stack_a, t_stack *stack_b, int *at_back)
+{
+	int	big_of_two;
 	int	number;
 	int	number_i;
 
@@ -111,28 +151,7 @@ void	push_b_2_a(t_stack *stack_a, t_stack *stack_b, int *at_back)
 			}
 		}
 		pa(stack_a, stack_b);
-		i = -1;
-		while (i++ < *at_back && !sorted(stack_a))
-		{
-			if (stack_b->stacked)
-				smalln = find_num(stack_b, 0);
-			else
-				smalln = -2147483648;
-			number = find_num(stack_b, 1);
-			if (stack_a->stacked > 0)
-			{
-				if ((stack_a->stack_ar[0]
-						< stack_a->stack_ar[stack_a->stacked - 1])
-					&& ((stack_a->stack_ar[0]
-							- stack_a->stack_ar[stack_a->stacked - 1])
-						> (number - stack_a->stack_ar[stack_a->stacked - 1])))
-					rra(stack_a);
-				if (stack_a->stack_ar[stack_a->stacked - 1]
-					== find_num(stack_a, 0)
-					&& stack_a->stack_ar[stack_a->stacked - 1] < smalln)
-					ra(stack_a);
-			}
-		}
+		check_back(stack_a, stack_b, at_back, &number);
 	}
 }
 
