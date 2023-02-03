@@ -1,6 +1,6 @@
 {
-	"files.associations": {
-		"push_swap.h": "c",
-		"stdio.h": "c"
-	}
+    "cmake.configureOnOpen": false,
+    "files.associations": {
+        "push_swap.h": "c"
+    }
 }

@@ -1,44 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_operations_print.c                           :+:      :+:    :+:   */
+/*   get_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/23 17:52:06 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/03 11:56:52 by tvasilev         ###   ########.fr       */
+/*   Created: 2023/02/03 12:06:31 by tvasilev          #+#    #+#             */
+/*   Updated: 2023/02/03 17:04:43 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(t_stack *stack_a)
+int	get_magic_num(int len)
 {
-	to_print("sa\n");
-	s(stack_a);
+	if (len < 60)
+		return (2);
+	else if (len < 250)
+		return (4);
+	else
+		return (8);
 }
 
-void	sb(t_stack *stack_b)
+int	get_big_of_two(t_stack *stack, int number)
 {
-	to_print("sb\n");
-	s(stack_b);
+	if (number < find_num(stack, 1))
+		return (find_num(stack, 1));
+	else
+		return (number);
 }
 
-void	ss(t_stack *stack_a, t_stack *stack_b)
+void	get_best_move(t_stack *stack, int point)
 {
-	to_print("ss\n");
-	sa(stack_a);
-	sb(stack_b);
-}
-
-void	pa(t_stack *stack_a, t_stack *stack_b)
-{
-	to_print("pa\n");
-	p(stack_b, stack_a);
-}
-
-void	pb(t_stack *stack_b, t_stack *stack_a)
-{
-	to_print("pb\n");
-	p(stack_a, stack_b);
+	if (find_small_point(stack, point))
+		ra(stack);
+	else
+		rra(stack);
 }
