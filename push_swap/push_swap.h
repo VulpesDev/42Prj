@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 12:33:23 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/03 15:24:36 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/03 17:29:57 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int		get_big_of_two(t_stack *stack, int number);
 //choses the best move action, depending on point
 void	get_best_move(t_stack *stack, int point);
 //* SORT FUNCTIONS
+void	small_sort(t_stack *stack_a, t_stack *stack_b);
 //pushes every value from a to b
 void	push_a_2_b(t_stack *stack_a, t_stack *stack_b);
 //checks the bottom of a, if it should put it at top

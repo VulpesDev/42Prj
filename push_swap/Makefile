@@ -6,7 +6,7 @@
 #    By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 16:50:22 by tvasilev          #+#    #+#              #
-#    Updated: 2023/02/03 15:39:09 by tvasilev         ###   ########.fr        #
+#    Updated: 2023/02/03 17:07:31 by tvasilev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME = push_swap
 
 SRC = push_swap.c error_handling.c atol.c stack_operations.c stack_operations_subject.c \
 stack_operations_print.c stack_operations_print2.c find_functions.c other_functions.c \
-get_functions.c sorting_functions.c
+get_functions.c sorting_functions.c sort_small.c
 
 OBJ = $(SRC:.c=.o)
 
