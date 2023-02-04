@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 12:31:19 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/03 17:24:46 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/04 10:47:41 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	main(int argc, char **argv)
 		if (stack_a.stacked > 10)
 			sort(&stack_a, &stack_b);
 		else
-			small_sort(&stack_a, &stack_b, stack_a.stacked);
+			small_sort(&stack_a, &stack_b);
 	}
 	return (0);
 }
