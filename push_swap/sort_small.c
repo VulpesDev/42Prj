@@ -6,13 +6,13 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:07:36 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/04 10:57:04 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/04 18:11:17 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	small_sort(t_stack *stack_a, t_stack *stack_b)
+void	small_sort(t_stack *stack_a)
 {
 	if (sorted(stack_a))
 		return ;

@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 12:31:19 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/04 10:47:41 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/04 18:11:31 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,10 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 {
 	int	i;
 	int	number;
-	int	number_i;
 	int	at_back;
 
 	if (sorted(stack_a))
 		return ;
-	number_i = find_num_i(stack_a, 0);
 	if (!sorted(stack_a) && stack_a->stack_ar[0] == find_num(stack_a, 1))
 		ra(stack_a);
 	push_a_2_b(stack_a, stack_b);
@@ -42,11 +40,9 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 
 int	main(int argc, char **argv)
 {
-	int		i;
 	t_stack	stack_a;
 	t_stack	stack_b;
 
-	i = 0;
 	stack_a.stacked = 0;
 	stack_b.stacked = 0;
 	if (!handle_errors(argc, argv))
@@ -58,10 +54,10 @@ int	main(int argc, char **argv)
 			push(&stack_a, ft_atoi(argv[argc]));
 		}
 		stack_a = convert_to_seq(stack_a);
-		if (stack_a.stacked > 10)
+		if (stack_a.stacked > 3)
 			sort(&stack_a, &stack_b);
 		else
-			small_sort(&stack_a, &stack_b);
+			small_sort(&stack_a);
 	}
 	return (0);
 }

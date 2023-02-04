@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 10:35:12 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/02 17:04:03 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/04 11:49:02 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	find_num(t_stack *stack, int big)
 	int	len;
 
 	i = 0;
+	if (stack->stacked <= 0)
+		return (0);
 	result = stack->stack_ar[stack->stacked - 1];
 	len = stack->stacked - 1;
 	while (i < len)

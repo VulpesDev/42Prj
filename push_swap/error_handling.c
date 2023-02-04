@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 12:42:34 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/01/25 17:21:09 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/04 18:08:04 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 static int	print_error(void)
 {
 	if (write(2, "Error!", 7))
+	{
 		;
+	}
 	return (0);
 }
 
@@ -66,7 +68,6 @@ static int	is_duplicate(int i, int argc, char **str)
 //checks the signs and the length of the number, ignoring the 0s in front
 static int	is_valid_string(char *str)
 {
-	char	*str_proc;
 	int		i;
 	int		signs;
 	int		n_count;

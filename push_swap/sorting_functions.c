@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 11:31:29 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/03 17:04:42 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/04 11:47:48 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ void	check_back(t_stack *stack_a, t_stack *stack_b, int *at_b, int *num)
 {
 	int	i;
 	int	smalln;
+	int	stack_zeroth;
+	int	stack_last;
 
 	i = -1;
 	while (i++ < *at_b && !sorted(stack_a))
@@ -77,14 +79,12 @@ void	check_back(t_stack *stack_a, t_stack *stack_b, int *at_b, int *num)
 		num[0] = find_num(stack_b, 1);
 		if (stack_a->stacked > 0)
 		{
-			if ((stack_a->stack_ar[0]
-					< stack_a->stack_ar[stack_a->stacked - 1])
-				&& ((stack_a->stack_ar[0]
-						- stack_a->stack_ar[stack_a->stacked - 1])
-					> (num[0] - stack_a->stack_ar[stack_a->stacked - 1])))
+			stack_zeroth = stack_a->stack_ar[0];
+			stack_last = stack_a->stack_ar[stack_a->stacked - 1];
+			if ((stack_zeroth < stack_last)
+				&& ((stack_zeroth - stack_last) > (num[0] - stack_last)))
 				rra(stack_a);
-			if (stack_a->stack_ar[stack_a->stacked - 1]
-				== find_num(stack_a, 0)
+			if (stack_a->stack_ar[stack_a->stacked - 1] == find_num(stack_a, 0)
 				&& stack_a->stack_ar[stack_a->stacked - 1] < smalln)
 				ra(stack_a);
 		}
