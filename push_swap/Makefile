@@ -6,13 +6,13 @@
 #    By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 16:50:22 by tvasilev          #+#    #+#              #
-#    Updated: 2023/02/04 18:10:00 by tvasilev         ###   ########.fr        #
+#    Updated: 2023/02/05 11:42:21 by tvasilev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 
 NAME = push_swap
 

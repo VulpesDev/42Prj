@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/31 11:22:44 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/04 11:42:06 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/05 12:36:36 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,13 +101,21 @@ t_stack	convert_to_seq(t_stack stack)
 	len = stack.stacked;
 	counter = 0;
 	new.stacked = 0;
+	small_i = -1;
+	while (++small_i < len)
+		new.stack_ar[small_i] = -1;
 	small_i = find_num_i(&stack, 0);
-	while (counter < len)
+	while (counter < len - 1)
 	{
 		new.stack_ar[small_i] = counter;
-		small_i = find_small_i_big_than(&stack, stack.stack_ar[small_i]);
 		new.stacked++;
 		counter++;
+		small_i = find_small_i_big_than(&stack, stack.stack_ar[small_i]);
 	}
+	new.stacked++;
+	small_i = -1;
+	while (++small_i < len)
+		if (new.stack_ar[small_i] < 0)
+			new.stack_ar[small_i] = counter;
 	return (new);
 }

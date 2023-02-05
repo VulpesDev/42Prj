@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 12:31:19 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/04 18:11:31 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/05 18:13:07 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ int	main(int argc, char **argv)
 			push(&stack_a, ft_atoi(argv[argc]));
 		}
 		stack_a = convert_to_seq(stack_a);
-		if (stack_a.stacked > 3)
+		if (stack_a.stacked != 3 && stack_a.stacked > 5)
 			sort(&stack_a, &stack_b);
 		else
-			small_sort(&stack_a);
+			small_sort(&stack_a, &stack_b);
 	}
 	return (0);
 }

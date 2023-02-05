@@ -6,11 +6,11 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/23 13:40:05 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/04 17:44:46 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/05 17:35:14 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 //* SUBJECT FUNCTIONS
 void	s(t_stack *stack)

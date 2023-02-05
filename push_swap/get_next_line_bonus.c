@@ -59,6 +59,8 @@ char	*get_next_line(int fd)
 
 	result = 0;
 	chars_read = 0;
+	if (fd == -1)
+		return (freeing_shit(&(buff[0]), result, 0));
 	if (fd < 0 || fd > FOPEN_MAX)
 		return (NULL);
 	if (!buff[fd])

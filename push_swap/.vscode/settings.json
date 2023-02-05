@@ -3,6 +3,7 @@
     "files.associations": {
         "push_swap.h": "c",
         "get_next_line_bonus.h": "c",
-        "ft_printf.h": "c"
+        "ft_printf.h": "c",
+        "ratio": "c"
     }
 }

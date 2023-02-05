@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 12:06:03 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/04 18:06:44 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/05 14:42:00 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,9 @@ int	main(int argc, char **argv)
 		{
 			if (!text_2_cmd(s, &stack_a, &stack_b))
 			{
-				if (write(2, "Error!", 7))
-				{
-					;
-				}
 				free(s);
+				get_next_line(-1);
+				write(2, "Error!", 7);
 				return (0);
 			}
 			free(s);
