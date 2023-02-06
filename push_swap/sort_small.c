@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 17:07:36 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/05 18:10:34 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/06 15:29:16 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	sort_5(t_stack *stack_a, t_stack *stack_b)
 	int	number_i;
 
 	i = -1;
+	if (sorted(stack_a))
+		return ;
 	number_i = find_num_i(stack_a, 0);
 	while (++i < 2)
 	{
@@ -74,6 +76,8 @@ void	sort_4(t_stack *stack_a, t_stack *stack_b)
 {
 	int	number_i;
 
+	if (sorted(stack_a))
+		return ;
 	number_i = find_num_i(stack_a, 0);
 	while (stack_a->stack_ar[stack_a->stacked - 1] != find_num(stack_a, 0))
 	{

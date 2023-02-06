@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 12:06:03 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/05 14:42:00 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/06 12:45:12 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,34 @@ int	text_2_cmd(char *str, t_stack *stack_a, t_stack *stack_b)
 	return (1);
 }
 
+void	read_and_do(t_stack *stack_a, t_stack *stack_b)
+{
+	char	*s;
+
+	s = get_next_line(0);
+	while (s != NULL)
+	{
+		if (!text_2_cmd(s, stack_a, stack_b))
+		{
+			free(s);
+			get_next_line(-1);
+			write(2, "Error!", 7);
+			return ;
+		}
+		free(s);
+		s = get_next_line(0);
+	}
+	if (sorted(stack_a) && stack_b->stacked < 1)
+		ft_printf("OK\n");
+	else
+		ft_printf("KO\n");
+	return ;
+}
+
 int	main(int argc, char **argv)
 {
 	t_stack	stack_a;
 	t_stack	stack_b;
-	char	*s;
 
 	stack_a.stacked = 0;
 	stack_b.stacked = 0;
@@ -82,23 +105,7 @@ int	main(int argc, char **argv)
 		while (--argc >= 1)
 			push(&stack_a, ft_atoi(argv[argc]));
 		stack_a = convert_to_seq(stack_a);
-		s = get_next_line(0);
-		while (s != NULL)
-		{
-			if (!text_2_cmd(s, &stack_a, &stack_b))
-			{
-				free(s);
-				get_next_line(-1);
-				write(2, "Error!", 7);
-				return (0);
-			}
-			free(s);
-			s = get_next_line(0);
-		}
-		if (sorted(&stack_a) && stack_b.stacked < 1)
-			ft_printf("OK\n");
-		else
-			ft_printf("KO\n");
+		read_and_do(&stack_a, &stack_b);
 	}
 	return (0);
 }
