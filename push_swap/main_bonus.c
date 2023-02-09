@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/04 12:06:03 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/06 12:45:12 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/09 12:04:07 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	read_and_do(t_stack *stack_a, t_stack *stack_b)
 		{
 			free(s);
 			get_next_line(-1);
-			write(2, "Error!", 7);
+			write(2, "Error\n", 7);
 			return ;
 		}
 		free(s);

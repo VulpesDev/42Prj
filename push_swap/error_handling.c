@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 12:42:34 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/05 12:59:16 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/02/09 12:19:36 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	print_error(void)
 {
-	write(2, "Error!", 7);
+	write(2, "Error\n", 6);
 	return (0);
 }
 
