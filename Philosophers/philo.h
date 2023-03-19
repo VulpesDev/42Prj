@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 12:40:14 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/02/12 14:38:23 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/03/19 17:14:19 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ time_to_eat time_to_sleep \
 # include <pthread.h>
 # include <stdio.h>
 # include <unistd.h>
+# include <stdlib.h>
+# include <string.h>
+#include <sys/time.h>
 
 typedef struct s_default_data
 {
@@ -31,10 +34,23 @@ typedef struct s_default_data
 	int	t_eat;
 	int	t_sleep;
 	int	ec_eat;
+	long long int s_time_ms;
+	struct timeval  tv;
+	pthread_mutex_t *th_mutx;
 }				t_default_data;
 
-int	handle_errors(int argc, char **argv);
+typedef struct{
+	pthread_t ph_id;
+	t_default_data *data;
+	pthread_mutex_t	*th_mutx;
+}	t_phil_vars;
+
+int	handle_errors(int argc);
 
 int	ft_atoi(const char *nptr);
+
+int	ft_usleep(__useconds_t usec);
+
+void	ph_eat(void *v);
 
 #endif
