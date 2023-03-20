@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 12:40:14 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/03/19 17:14:19 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/03/20 17:19:48 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ typedef struct{
 	pthread_t ph_id;
 	t_default_data *data;
 	pthread_mutex_t	*th_mutx;
+	int		 		*eat_status;
+	int				*stop;
 }	t_phil_vars;
 
 int	handle_errors(int argc);
@@ -50,6 +52,8 @@ int	handle_errors(int argc);
 int	ft_atoi(const char *nptr);
 
 int	ft_usleep(__useconds_t usec);
+
+long long int calc_secs(struct timeval tv, long long s_time_ms);
 
 void	ph_eat(void *v);
 

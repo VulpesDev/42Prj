@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 14:43:46 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/03/19 17:43:54 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/03/20 17:18:56 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	ph_think(void *v)
 void	ph_sleep(void *v)
 {
 	t_phil_vars *vars = v;
+	if (*vars->stop)
+		return ;
 	gettimeofday(&vars->data->tv, NULL);
 	printf("%lld #%ld is sleeping\n",calc_secs(vars->data->tv, vars->data->s_time_ms), vars->ph_id+1);
 	pthread_mutex_unlock(&vars->th_mutx[vars->ph_id]);
@@ -41,6 +43,8 @@ void	ph_sleep(void *v)
 void	ph_eat(void *v)
 {
 	t_phil_vars *vars = v;
+	if (*vars->stop)
+		return ;
 	gettimeofday(&vars->data->tv, NULL);
 	ph_think(vars);
 	pthread_mutex_lock(&vars->th_mutx[vars->ph_id]);
@@ -51,13 +55,7 @@ void	ph_eat(void *v)
 		pthread_mutex_lock(&vars->th_mutx[vars->ph_id + 1]);
 	printf("%lld #%ld has taken a fork\n", calc_secs(vars->data->tv, vars->data->s_time_ms), vars->ph_id+1);
 	printf("%lld #%ld is eating\n", calc_secs(vars->data->tv, vars->data->s_time_ms), vars->ph_id+1);
+	vars->eat_status[vars->ph_id] = 0;
 	usleep(1000*vars->data->t_eat);
 	ph_sleep(vars);
-}
-
-void	ph_die(void *v)
-{
-	t_phil_vars *vars = v;
-	gettimeofday(&vars->data->tv, NULL);
-	printf("%lld #%ld died\n", calc_secs(vars->data->tv, vars->data->s_time_ms), vars->ph_id+1);
 }
