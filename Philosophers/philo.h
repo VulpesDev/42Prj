@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 12:40:14 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/03/20 17:19:48 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/03/22 11:59:04 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	handle_errors(int argc);
 
 int	ft_atoi(const char *nptr);
 
-int	ft_usleep(__useconds_t usec);
+int	ft_usleep(__useconds_t usec, t_phil_vars* vars);
 
 long long int calc_secs(struct timeval tv, long long s_time_ms);
 

@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 14:43:46 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/03/21 13:29:48 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/03/23 13:41:27 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,6 @@ void	ph_eat(void *v)
 	printf("%lld #%ld has taken a fork\n", calc_secs(vars->data->tv, vars->data->s_time_ms), vars->ph_id+1);
 	printf("%lld #%ld is eating\n", calc_secs(vars->data->tv, vars->data->s_time_ms), vars->ph_id+1);
 	vars->eat_status[vars->ph_id] = 0;
-	usleep(1000*vars->data->t_eat);
+	ft_usleep(1000*vars->data->t_eat, vars);
 	ph_sleep(vars);
 }
