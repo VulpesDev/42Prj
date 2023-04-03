@@ -1,76 +1,36 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   philosopher_actions.c                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/12 14:43:46 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/03/26 16:27:28 by tvasilev         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "philo.h"
 
-long long int calc_secs(struct timeval tv, long long s_time_ms)
+void	*think(void *variables)
 {
-	return (((tv.tv_sec)*1000+(tv.tv_usec)/1000)-s_time_ms);
+	t_var	*var;
+	t_rules rules;
+	t_philo philo;
+
+	var = (t_var*)variables;
+	rules = var->rules;
+	philo = var->philo;
+	message(timestamp_ms(rules.time_start), philo, "is thinking\n");
+	eat(rules, philo);
+	return (NULL);
 }
 
-void	ph_think(void *v)
+void	eat(t_rules rules, t_philo philo)
 {
-	t_phil_vars *vars = v;
-	gettimeofday(&vars->data->tv, NULL);
-	printf("%lld #%ld is thinking\n", calc_secs(vars->data->tv, vars->data->s_time_ms), vars->ph_id+1);
-}
-
-void	ph_sleep(void *v)
-{
-	t_phil_vars *vars = v;
-	pthread_mutex_unlock(&vars->th_mutx[vars->ph_id]);
-	if ((int)vars->ph_id >= vars->data->num_philo-1)
-		pthread_mutex_unlock(&vars->th_mutx[0]);
-	else
-		pthread_mutex_unlock(&vars->th_mutx[vars->ph_id + 1]);
-	if (*vars->stop)
+	pthread_mutex_lock(&philo.left_fork);
+	message(timestamp_ms(rules.time_start), philo, "has taken a fork\n");
+	pthread_mutex_lock(&philo.right_fork);
+	message(timestamp_ms(rules.time_start), philo, "has taken a fork\n");
+	philo.hunger = rules.time_die;
+	if (ft_sleep(rules, rules.time_eat))
 		return ;
-	gettimeofday(&vars->data->tv, NULL);
-	printf("%lld #%ld is sleeping\n",calc_secs(vars->data->tv, vars->data->s_time_ms), vars->ph_id+1);
-	ft_usleep(1000*vars->data->t_sleep, vars);
-	ph_eat(vars);
+	pthread_mutex_unlock(&philo.left_fork);
+	pthread_mutex_unlock(&philo.right_fork);
+	phsleep(rules, philo);
 }
 
-void	ph_eat(void *v)
+void	phsleep(t_rules rules, t_philo philo)
 {
-	t_phil_vars *vars = v;
-	if (*vars->stop)
+	message(timestamp_ms(rules.time_start), philo, "is sleeping\n");
+	if (ft_sleep(rules, rules.time_sleep))
 		return ;
-	gettimeofday(&vars->data->tv, NULL);
-	ph_think(vars);
-	if ((int)vars->ph_id >= vars->data->num_philo-1)
-	{
-		pthread_mutex_lock(&vars->th_mutx[0]);
-		if (*vars->stop)
-			return ph_sleep(vars);
-		printf("%lld #%ld has taken a fork\n", calc_secs(vars->data->tv, vars->data->s_time_ms), vars->ph_id+1);
-		pthread_mutex_lock(&vars->th_mutx[vars->ph_id]);
-		if (*vars->stop)
-			return ph_sleep(vars);
-		printf("%lld #%ld has taken a fork\n", calc_secs(vars->data->tv, vars->data->s_time_ms), vars->ph_id+1);
-	}
-	else
-	{
-		pthread_mutex_lock(&vars->th_mutx[vars->ph_id]);
-		if (*vars->stop)
-			return ph_sleep(vars);
-		printf("%lld #%ld has taken a fork\n", calc_secs(vars->data->tv, vars->data->s_time_ms), vars->ph_id+1);
-		pthread_mutex_lock(&vars->th_mutx[vars->ph_id+1]);
-		if (*vars->stop)
-			return ph_sleep(vars);
-		printf("%lld #%ld has taken a fork\n", calc_secs(vars->data->tv, vars->data->s_time_ms), vars->ph_id+1);
-	}
-	printf("%lld #%ld is eating\n", calc_secs(vars->data->tv, vars->data->s_time_ms), vars->ph_id+1);
-	vars->eat_status[vars->ph_id] = 0;
-	ft_usleep(1000*vars->data->t_eat, vars);
-	ph_sleep(vars);
 }

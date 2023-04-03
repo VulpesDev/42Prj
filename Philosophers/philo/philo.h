@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 12:40:14 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/03/26 13:52:43 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/04/03 16:20:48 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,43 +18,57 @@
 time_to_eat time_to_sleep \
 [number_of_times_each_philosopher_must_eat]\n\n"
 # define STR_INSTRUCTIONS_I 134
+# include "libft.h"
 # include <unistd.h>
 # include <pthread.h>
 # include <stdio.h>
-# include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
 #include <sys/time.h>
 
-typedef struct s_default_data
+typedef struct s_rules
 {
 	int	num_philo;
 	int	num_forks;
-	int	t_die;
-	int	t_eat;
-	int	t_sleep;
-	int	ec_eat;
-	long long int s_time_ms;
-	struct timeval  tv;
-	pthread_mutex_t *th_mutx;
-}				t_default_data;
+	int num_eat;
+	int	time_die;
+	int	time_eat;
+	int	time_sleep;
+	int time_start;
+	int end;
+}			t_rules;
 
-typedef struct{
-	pthread_t ph_id;
-	t_default_data *data;
-	pthread_mutex_t	*th_mutx;
-	int		 		*eat_status;
-	int				*stop;
-}	t_phil_vars;
+typedef struct s_philo
+{
+	int				id;
+	pthread_t		thread_id;
+	pthread_mutex_t	left_fork;
+	pthread_mutex_t	right_fork;
+	int				hunger;
+	int				times_ate;
+}			t_philo;
 
-int	handle_errors(int argc);
+typedef struct s_var
+{
+	t_rules	rules;
+	t_philo	philo;
+}			t_var;
 
-int	ft_atoi(const char *nptr);
 
-int	ft_usleep(__useconds_t usec, t_phil_vars* vars);
+void	message(long milliseconds, t_philo philo, const char *str);
 
-long long int calc_secs(struct timeval tv, long long s_time_ms);
+long	get_time_ms();
 
-void	ph_eat(void *v);
+long	timestamp_ms(long program_start);
+
+int		handle_errors(int argc);
+
+void	*think(void *variables);
+
+void	eat(t_rules rules, t_philo philo);
+
+void	phsleep(t_rules rules, t_philo philo);
+
+int		ft_sleep(t_rules rules, long ms);
 
 #endif
