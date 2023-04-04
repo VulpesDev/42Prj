@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 12:40:14 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/04/03 16:20:48 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/04/04 15:01:22 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ time_to_eat time_to_sleep \
 # include <string.h>
 #include <sys/time.h>
 
+typedef struct s_philo t_philo;
 typedef struct s_rules
 {
 	int	num_philo;
@@ -38,24 +39,27 @@ typedef struct s_rules
 	int end;
 }			t_rules;
 
-typedef struct s_philo
+typedef struct s_var
+{
+	t_rules	*rules;
+	t_philo	*philo;
+}			t_var;
+
+struct s_philo
 {
 	int				id;
 	pthread_t		thread_id;
-	pthread_mutex_t	left_fork;
-	pthread_mutex_t	right_fork;
+	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	*right_fork;
 	int				hunger;
 	int				times_ate;
-}			t_philo;
-
-typedef struct s_var
-{
-	t_rules	rules;
-	t_philo	philo;
-}			t_var;
+	t_var			*var;
+};
 
 
-void	message(long milliseconds, t_philo philo, const char *str);
+void	message(long milliseconds, t_philo *philo, const char *str);
+
+int		ft_sleep(t_rules *rules, long ms);
 
 long	get_time_ms();
 
@@ -65,10 +69,8 @@ int		handle_errors(int argc);
 
 void	*think(void *variables);
 
-void	eat(t_rules rules, t_philo philo);
+void	eat(t_rules *rules, t_philo *philo);
 
-void	phsleep(t_rules rules, t_philo philo);
-
-int		ft_sleep(t_rules rules, long ms);
+void	phsleep(t_rules *rules, t_philo *philo);
 
 #endif
