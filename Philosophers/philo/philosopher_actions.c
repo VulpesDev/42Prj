@@ -25,6 +25,25 @@ void	wait_till_dead(t_rules *rules, t_philo *philo)
 	}
 }
 
+void	leat(t_rules *rules, t_philo *philo)
+{
+	pthread_mutex_lock(philo->right_fork);
+	if (rules->end)
+		return ft_unlock_mutex(philo, 2);
+	message(timestamp_ms(rules->time_start), philo, "has taken a fork\n");
+	philo->hunger = timestamp_ms(rules->time_start);
+	pthread_mutex_lock(philo->left_fork);
+	if (rules->end)
+		return ft_unlock_mutex(philo, 0);
+	message(timestamp_ms(rules->time_start), philo, "has taken a fork\n");
+	message(timestamp_ms(rules->time_start), philo, "is eating\n");
+	if (ft_sleep(rules, rules->time_eat))
+		return ft_unlock_mutex(philo, 2);
+	philo->times_ate++;
+	ft_unlock_mutex(philo, 2);
+	phsleep(rules, philo);
+}
+
 void	*think(void *variables)
 {
 	t_var	*var;
@@ -38,7 +57,12 @@ void	*think(void *variables)
 		return (NULL);
 	message(timestamp_ms(rules->time_start), philo, "is thinking\n");
 	if (rules->num_forks > 1)
-		eat(rules, philo);
+	{
+		if (philo->id == rules->num_philo-1)
+			leat(rules, philo);
+		else
+			eat(rules, philo);
+	}
 	else
 		wait_till_dead(rules, philo);
 	return (NULL);
