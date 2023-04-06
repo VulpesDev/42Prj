@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 12:40:14 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/04/04 15:01:22 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/04/06 12:47:00 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_rules
 	int	num_forks;
 	int num_eat;
 	int	time_die;
+	int	has_eat;
 	int	time_eat;
 	int	time_sleep;
 	int time_start;
@@ -56,14 +57,13 @@ struct s_philo
 	t_var			*var;
 };
 
+void	message(int milliseconds, t_philo *philo, const char *str);
 
-void	message(long milliseconds, t_philo *philo, const char *str);
+int	get_time_ms(void);
 
-int		ft_sleep(t_rules *rules, long ms);
+int	timestamp_ms(int program_start);
 
-long	get_time_ms();
-
-long	timestamp_ms(long program_start);
+int		ft_sleep(t_rules *rules, int ms);
 
 int		handle_errors(int argc);
 
@@ -72,5 +72,7 @@ void	*think(void *variables);
 void	eat(t_rules *rules, t_philo *philo);
 
 void	phsleep(t_rules *rules, t_philo *philo);
+
+void	*monitoring(void *vars);
 
 #endif
