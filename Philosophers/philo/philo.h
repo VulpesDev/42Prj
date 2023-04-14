@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 12:40:14 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/04/14 16:43:40 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/04/14 18:39:52 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		timestamp_ms(int program_start);
 
 int		ft_sleep(t_rules *rules, int ms);
 
-int		handle_errors(int argc);
+int		handle_errors(int argc, char **argv);
 
 void	*think(void *variables);
 
@@ -76,5 +76,16 @@ void	phsleep(t_rules *rules, t_philo *philo);
 void	*monitoring(void *vars);
 
 void	ft_unlock_mutex(t_philo *philo, int state);
+
+int		initialize_rules(t_rules *rules, int argc, char **argv);
+
+int		initialize_philo(t_philo *philo, t_rules *rules, int id,
+			t_philo *prevph);
+
+int		initialize_all_philo(t_philo **philo, t_rules *rules);
+
+void	join_all_philo(t_philo *philos, t_rules *rules);
+
+void	destroy_all_philo(t_philo **philos, t_rules *rules);
 
 #endif

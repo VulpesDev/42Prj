@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:21:04 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/04/14 16:45:47 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/04/14 18:40:36 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,16 @@ int	print_error(void)
 	return (1);
 }
 
-int	handle_errors(int argc)
+int	handle_errors(int argc, char **argv)
 {
+	int	i;
+
+	i = 0;
+	while (++i < argc)
+	{
+		if (ft_atoi(argv[i]) <= 0)
+			return (print_error());
+	}
 	if (argc != 5 && argc != 6)
 		return (print_error());
 	return (0);

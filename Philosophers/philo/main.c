@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:27:50 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/04/14 16:44:42 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/04/14 18:40:07 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 	t_var		vars;
 
 	philos = NULL;
-	if (handle_errors(argc))
+	if (handle_errors(argc, argv))
 		return (1);
 	initialize_rules(&rules, argc, argv);
 	if (initialize_all_philo(&philos, &rules))
