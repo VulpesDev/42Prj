@@ -6,24 +6,11 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:20:45 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/04/14 16:35:44 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/04/14 16:43:59 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	ft_unlock_mutex(t_philo *philo, int state)
-{
-	if (state == 0)
-		pthread_mutex_unlock(philo->left_fork);
-	else if (state == 1)
-		pthread_mutex_unlock(philo->right_fork);
-	else
-	{
-		pthread_mutex_unlock(philo->left_fork);
-		pthread_mutex_unlock(philo->right_fork);
-	}
-}
 
 void	wait_till_dead(t_rules *rules, t_philo *philo)
 {

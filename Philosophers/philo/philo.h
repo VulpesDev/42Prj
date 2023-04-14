@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 12:40:14 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/04/14 16:23:55 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/04/14 16:43:40 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,7 @@ void	eat(t_rules *rules, t_philo *philo);
 void	phsleep(t_rules *rules, t_philo *philo);
 
 void	*monitoring(void *vars);
+
+void	ft_unlock_mutex(t_philo *philo, int state);
 
 #endif

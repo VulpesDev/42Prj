@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_errors.c                                    :+:      :+:    :+:   */
+/*   usleep_wrap.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/14 16:21:04 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/04/14 16:45:47 by tvasilev         ###   ########.fr       */
+/*   Created: 2023/03/19 16:06:32 by tvasilev          #+#    #+#             */
+/*   Updated: 2023/04/14 16:43:53 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	print_error(void)
+int	ft_usleep(long ms, t_var *vars)
 {
-	write(STD_ERROR, "Error\n", 6);
-	write(1, STR_INSTRUCTIONS, STR_INSTRUCTIONS_I);
-	return (1);
-}
+	long	t;
 
-int	handle_errors(int argc)
-{
-	if (argc != 5 && argc != 6)
-		return (print_error());
+	t = 0;
+	while (t < ms)
+	{
+		usleep(1000);
+		if (vars->rules->end)
+			return (1);
+		t += 1;
+	}
 	return (0);
 }
