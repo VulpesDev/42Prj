@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/14 16:27:50 by tvasilev          #+#    #+#             */
+/*   Updated: 2023/04/14 16:30:27 by tvasilev         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 int	initialize_rules(t_rules *rules, int argc, char **argv)
 {
-
 	rules->num_philo = ft_atoi(argv[1]);
 	rules->num_forks = ft_atoi(argv[1]);
 	rules->time_die = ft_atoi(argv[2]);
@@ -20,16 +31,17 @@ int	initialize_rules(t_rules *rules, int argc, char **argv)
 	return (0);
 }
 
-int	initialize_philo(t_philo *philo, t_rules *rules, int id, t_philo *nextph)
+int	initialize_philo(t_philo *philo, t_rules *rules, int id, t_philo *prevph)
 {
 	philo->id = id;
 	philo->hunger = timestamp_ms(rules->time_start);
 	philo->times_ate = 0;
-	philo->left_fork = malloc(sizeof(pthread_mutex_t));
+	philo->left_fork = malloc(sizeof(pthread_mutex_t) * 2);
+	if (!philo->left_fork)
+		return (1);
 	pthread_mutex_init(philo->left_fork, NULL);
-	nextph->right_fork = philo->left_fork;
-	//!free this
-	philo->var = malloc(sizeof(t_var));
+	prevph->right_fork = philo->left_fork;
+	philo->var = malloc(sizeof(t_var) * 2);
 	if (!philo->var)
 		return (1);
 	philo->var->rules = rules;
@@ -37,7 +49,7 @@ int	initialize_philo(t_philo *philo, t_rules *rules, int id, t_philo *nextph)
 	return (0);
 }
 
-int initialize_all_philo(t_philo **philo, t_rules *rules)
+int	initialize_all_philo(t_philo **philo, t_rules *rules)
 {
 	int		i;
 
@@ -47,10 +59,11 @@ int initialize_all_philo(t_philo **philo, t_rules *rules)
 	i = -1;
 	while (++i < rules->num_philo)
 	{
-		if (i == rules->num_philo - 1)
-			initialize_philo(&((*philo)[i]), rules, i, &((*philo)[0]));
+		if (i == 0)
+			initialize_philo(&((*philo)[i]), rules, i,
+				&((*philo)[rules->num_philo - 1]));
 		else
-			initialize_philo(&((*philo)[i]), rules, i, &((*philo)[i+1]));
+			initialize_philo(&((*philo)[i]), rules, i, &((*philo)[i - 1]));
 		pthread_create(&((*philo)[i]).thread_id, NULL, &think, (*philo)[i].var);
 	}
 	return (0);
@@ -58,15 +71,11 @@ int initialize_all_philo(t_philo **philo, t_rules *rules)
 
 void	join_all_philo(t_philo *philos, t_rules *rules)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (++i < rules->num_philo)
-	{
-		//printf("Joining #%d\n", i);
 		pthread_join(philos[i].thread_id, NULL);
-		//printf("Joined #%d\n", i);
-	}
 }
 
 void	destroy_all_philo(t_philo **philos, t_rules *rules)
@@ -85,8 +94,8 @@ void	destroy_all_philo(t_philo **philos, t_rules *rules)
 
 int	main(int argc, char **argv)
 {
-	t_rules	rules;
-	t_philo	*philos;
+	t_rules		rules;
+	t_philo		*philos;
 	pthread_t	mon_id;
 	t_var		vars;
 
@@ -102,5 +111,5 @@ int	main(int argc, char **argv)
 	join_all_philo(philos, &rules);
 	pthread_join(mon_id, NULL);
 	destroy_all_philo(&philos, &rules);
-	return (0);	
+	return (0);
 }

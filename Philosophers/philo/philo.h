@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 12:40:14 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/04/06 12:47:00 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/04/14 16:23:55 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,20 @@ time_to_eat time_to_sleep \
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
-#include <sys/time.h>
+# include <sys/time.h>
 
-typedef struct s_philo t_philo;
+typedef struct s_philo	t_philo;
 typedef struct s_rules
 {
 	int	num_philo;
 	int	num_forks;
-	int num_eat;
+	int	num_eat;
 	int	time_die;
 	int	has_eat;
 	int	time_eat;
 	int	time_sleep;
-	int time_start;
-	int end;
+	int	time_start;
+	int	end;
 }			t_rules;
 
 typedef struct s_var
@@ -59,9 +59,9 @@ struct s_philo
 
 void	message(int milliseconds, t_philo *philo, const char *str);
 
-int	get_time_ms(void);
+int		get_time_ms(void);
 
-int	timestamp_ms(int program_start);
+int		timestamp_ms(int program_start);
 
 int		ft_sleep(t_rules *rules, int ms);
 
