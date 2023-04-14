@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 16:06:32 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/03/23 13:35:34 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/03/30 12:50:22 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_usleep(__useconds_t usec, t_phil_vars* vars)
 	{
 		usleep(5000);
 		if (*vars->stop)
-			return (0);
+			return (1);
 		t+=5000;	
 	}
 	return (0);

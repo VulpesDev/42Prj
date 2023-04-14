@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 11:42:23 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/03/22 12:05:12 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/04/03 16:23:19 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ void	*monitoring(void *v)
 	while(!endcon)
 	{
 		i = -1;
-		usleep(2000);
+		usleep(1000);
 		while (++i < vars->data->num_philo && !endcon)
 		{
-			vars->eat_status[i] += 2;
+			vars->eat_status[i] += 1;
 			if (vars->eat_status[i] >= vars->data->t_die)
 			{
 				gettimeofday(&vars->data->tv, NULL);
@@ -114,7 +114,7 @@ int	main(int argc, char **argv)
 	if (handle_errors(argc))
 		return (0);
 	fill_default(&data, argc, argv);
-	th_id = malloc((data.num_philo + 1) * sizeof(pthread_t));
+	th_id = malloc((data.num_philo + 2) * sizeof(pthread_t));
 	if (!th_id)
 		write(2, "Malloc Error!\n", 15);
 	gettimeofday(&data.tv, NULL);

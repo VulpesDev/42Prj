@@ -89,6 +89,8 @@ void	eat(t_rules *rules, t_philo *philo)
 
 void	phsleep(t_rules *rules, t_philo *philo)
 {
+	if (rules->end)
+		return ;
 	message(timestamp_ms(rules->time_start), philo, "is sleeping\n");
 	if (ft_sleep(rules, rules->time_sleep))
 		return ;

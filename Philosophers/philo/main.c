@@ -69,6 +69,20 @@ void	join_all_philo(t_philo *philos, t_rules *rules)
 	}
 }
 
+void	destroy_all_philo(t_philo **philos, t_rules *rules)
+{
+	int	i;
+
+	i = -1;
+	while (++i < rules->num_philo)
+	{
+		pthread_mutex_destroy((*philos)[i].left_fork);
+		free((*philos)[i].left_fork);
+		free((*philos)[i].var);
+	}
+	free(*philos);
+}
+
 int	main(int argc, char **argv)
 {
 	t_rules	rules;
@@ -87,5 +101,6 @@ int	main(int argc, char **argv)
 	pthread_create(&mon_id, NULL, &monitoring, &vars);
 	join_all_philo(philos, &rules);
 	pthread_join(mon_id, NULL);
+	destroy_all_philo(&philos, &rules);
 	return (0);	
 }
