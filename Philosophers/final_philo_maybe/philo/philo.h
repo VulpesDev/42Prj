@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 12:40:14 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/04/14 18:39:52 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/04/17 15:48:22 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ struct s_philo
 	pthread_mutex_t	*right_fork;
 	int				hunger;
 	int				times_ate;
+	int				start;
 	t_var			*var;
 };
 

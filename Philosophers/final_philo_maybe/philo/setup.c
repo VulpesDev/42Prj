@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:44:23 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/04/14 16:45:06 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/04/17 16:18:54 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	initialize_rules(t_rules *rules, int argc, char **argv)
 int	initialize_philo(t_philo *philo, t_rules *rules, int id, t_philo *prevph)
 {
 	philo->id = id;
+	philo->start = 0;
 	philo->hunger = timestamp_ms(rules->time_start);
 	philo->times_ate = 0;
 	philo->left_fork = malloc(sizeof(pthread_mutex_t) * 2);

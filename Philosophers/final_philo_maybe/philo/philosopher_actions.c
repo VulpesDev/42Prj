@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 16:20:45 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/04/14 16:43:59 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/04/17 16:23:46 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,13 @@ void	*think(void *variables)
 	var = (t_var *)variables;
 	rules = var->rules;
 	philo = var->philo;
+	usleep(2000);
+	if (philo->id % 2 == 0 && !philo->start)
+	{
+		philo->start = 1;
+		if (ft_sleep(rules, 50))
+			return (NULL);
+	}
 	if (rules->end)
 		return (0);
 	message(timestamp_ms(rules->time_start), philo, "is thinking\n");
