@@ -6,12 +6,13 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:10:48 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/05/05 19:24:26 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/05/05 19:55:21 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
 
+//*Constructors
 Fixed::Fixed( const int n )
 {
 	std::cout << "Int constructor called" << std::endl;
@@ -36,6 +37,13 @@ Fixed::Fixed(const Fixed &f)
 	*this = f;
 }
 
+Fixed::~Fixed( void )
+{
+	std::cout << "Destructor called" << std::endl;
+	return ;
+}
+
+//*Convert functions
 int		Fixed::toInt( void ) const
 {
 	return ((int)((float)this->_value / (float)(1 << _fbits)));
@@ -46,6 +54,7 @@ float		Fixed::toFloat( void ) const
 	return (((float)this->_value / (float)(1 << _fbits)));
 }
 
+//*Overload functions
 Fixed&	Fixed::operator=(const Fixed& other)
 {
 	std::cout << "Copy assignemnt operator called" << std::endl;
@@ -62,14 +71,15 @@ std::ostream& operator<<(std::ostream& os, const Fixed& obj)
 	return (os);
 }
 
-Fixed::~Fixed( void )
-{
-	std::cout << "Destructor called" << std::endl;
-	return ;
-}
-
+//*Raw functions
 int		Fixed::getRawBits( void ) const
 {
 	std::cout << "getRawBits member function called" << std::endl;
 	return (this->_value);
+}
+
+void	Fixed::setRawBits( int const raw )
+{
+	std::cout << "setRawBits member function called" << std::endl;
+	this->_value = raw;
 }
