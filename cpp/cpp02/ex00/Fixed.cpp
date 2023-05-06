@@ -6,11 +6,13 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 17:10:48 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/05/04 12:39:46 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/05/06 11:23:00 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
+
+const int	Fixed::_fbits = 8;
 
 Fixed::Fixed( void )
 {

@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 16:48:33 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/05/06 11:31:55 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/05/06 12:28:21 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,28 @@ public:
 	~Fixed();
 	//*Overload
 	friend std::ostream& operator<<(std::ostream& os, const Fixed& obj);
+		//Comparison
+	bool	operator>( const Fixed& other ) const;
+	bool	operator<( const Fixed& other ) const;
+	bool	operator>=( const Fixed& other ) const;
+	bool	operator<=( const Fixed& other ) const;
+	bool	operator==( const Fixed& other ) const;
+	bool	operator!=( const Fixed& other ) const;
+		//Arithmetics
+	Fixed&	operator+( const Fixed& other );
+	Fixed&	operator-( const Fixed& other );
+	Fixed&	operator*( const Fixed& other );
+	Fixed&	operator/( const Fixed& other );
+	Fixed&	operator++( void );
+	Fixed	operator++( int );
+	Fixed&	operator--( void );
+	Fixed	operator--( int );
+		//Specials
+	static Fixed&		min( Fixed& one, Fixed& other );
+	static const Fixed&	min( const Fixed& one, const Fixed& other );
+	static Fixed&		max( Fixed& one, Fixed& other );
+	static const Fixed&	max( const Fixed& one, const Fixed& other );
+
 };
 
 #endif
