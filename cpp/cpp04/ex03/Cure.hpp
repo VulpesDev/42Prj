@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 14:07:25 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/05/12 15:51:00 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/05/14 11:56:37 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ class Cure: public AMateria
 		Cure( void );
 		~Cure( void );
 		Cure*	clone( void ) const;
+		void	use(ICharacter& target);
 };
 
 #endif

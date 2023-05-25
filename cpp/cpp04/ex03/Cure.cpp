@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 14:10:17 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/05/12 15:51:21 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/05/16 12:08:05 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ Cure::Cure( void )
 Cure::~Cure( void )
 {
 	std::cout << "Destructed a cure" << std::endl;
+}
+
+void	Cure::use(ICharacter& target)
+{
+	std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
 }
 
 Cure*	Cure::clone( void ) const

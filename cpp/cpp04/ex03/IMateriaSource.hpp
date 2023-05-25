@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Ice.cpp                                            :+:      :+:    :+:   */
+/*   IMateriaSource.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/12 15:43:48 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/05/16 12:08:00 by tvasilev         ###   ########.fr       */
+/*   Created: 2023/05/14 12:13:22 by tvasilev          #+#    #+#             */
+/*   Updated: 2023/05/14 12:15:44 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Ice.hpp"
+#ifndef IMATERIASOURCE_HPP
+# define IMATERIASOURCE_HPP
 
-Ice::Ice( void )
+# include "AMateria.hpp"
+
+class IMateriaSource
 {
-	type = "ice";
-	std::cout << "Constructed an ice" << std::endl;
-}
+	public:
+		virtual	~IMateriaSource() {}
+		virtual void	learnMateria(AMateria*) = 0; 
+		virtual AMateria*	createMateria(std::string const & type) = 0;
+};
 
-Ice::~Ice( void )
-{
-	std::cout << "Destructed an ice" << std::endl;
-}
-
-Ice*	Ice::clone( void ) const
-{
-	Ice*	result;
-
-	result = new Ice(*this);
-	return (result);
-}
-
-void	Ice::use(ICharacter& target)
-{
-	std::cout << "* shoots an ice bolt at " << target.getName() << " *" << std::endl;
-}
+#endif

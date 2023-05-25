@@ -6,17 +6,17 @@
 #    By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 16:50:22 by tvasilev          #+#    #+#              #
-#    Updated: 2023/05/12 15:47:30 by tvasilev         ###   ########.fr        #
+#    Updated: 2023/05/16 12:26:31 by tvasilev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = c++
+CC = clang++
 
 CFLAGS = -Wall -Werror -Wextra
 
 NAME = run
 
-SRC = main.cpp AMateria.cpp Cure.cpp Ice.cpp
+SRC = main.cpp AMateria.cpp Character.cpp Cure.cpp Ice.cpp MateriaSource.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 15:26:57 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/04/24 13:57:12 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/05/25 14:52:21 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,4 @@ void	PhoneBook::search(void)
 	}
 	else
 		contact[index].display_detail();
-}
-
-void	PhoneBook::exit(void)
-{
-	std::exit(1);
 }

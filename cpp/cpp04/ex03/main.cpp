@@ -6,19 +6,35 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 15:44:24 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/05/12 15:49:33 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/05/16 12:27:21 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Ice.hpp"
-#include "Cure.hpp"
+// #include "Ice.hpp"
+// #include "Cure.hpp"
+// #include "IMateriaSource.hpp"
 
-int	main( void )
+#include "ICharacter.hpp"
+#include "AMateria.hpp"
+#include "Character.hpp"
+#include "MateriaSource.hpp"
+
+int main()
 {
-	Ice	ic;
-	Cure cur;
-
-	std::cout << ic.getType() << std::endl;
-	std::cout << cur.getType() << std::endl;
-	return (0);
+	IMateriaSource* src = new MateriaSource();
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
+	ICharacter* me = new Character("me");
+	AMateria* tmp;
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	tmp = src->createMateria("cure");
+	me->equip(tmp);
+	ICharacter* bob = new Character("bob");
+	me->use(0, *bob);
+	me->use(1, *bob);
+	 delete bob;
+	 delete me;
+	 delete src;
+	return 0;
 }

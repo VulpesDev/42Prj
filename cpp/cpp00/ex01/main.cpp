@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 15:52:40 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/04/24 13:47:58 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/05/25 14:52:14 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(void)
 		}
 		else if (!input.compare("EXIT"))
 		{
-			phonebook.exit();
+			break ;
 		}
 		std::cout << std::endl;
 		input.clear();

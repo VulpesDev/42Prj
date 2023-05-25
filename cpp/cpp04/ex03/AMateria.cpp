@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 14:00:07 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/05/12 15:49:18 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:59:29 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,10 @@ AMateria & AMateria::operator=(const AMateria & other)
 AMateria::~AMateria( void )
 {
 	std::cout << "AMateria destructed" << std::endl;
+}
+
+void		AMateria::use(ICharacter& target)
+{
+	return ;
 }
 
