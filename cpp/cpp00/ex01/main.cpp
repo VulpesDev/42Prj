@@ -6,12 +6,13 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 15:52:40 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/05/25 14:52:14 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/06/20 11:02:14 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.class.hpp"
 #include "PhoneBook.class.hpp"
+#include<stdio.h>
 
 int	main(void)
 {
@@ -21,7 +22,8 @@ int	main(void)
 	while (1)
 	{
 		std::cout << "Enter command: ";
-		std::cin >> input;
+		while (input == "")
+			std::getline(std::cin, input);
 		if (!input.compare("ADD"))
 		{
 			phonebook.add();

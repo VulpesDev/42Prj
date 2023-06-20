@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 15:26:47 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/05/25 14:52:24 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/06/20 10:44:31 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,16 @@
 # include <iomanip>
 # include <iostream>
 
+
 using	std::string;
 class	PhoneBook
 {
+	private:
+		Contact	_contact[8];
+		int		_len;
+		int		_current_contact;
+	
 	public:
-		Contact	contact[8];
-		int		len;
-		int		current_contact;
 		void	add(void);
 		void	display(void);
 		void	search(void);

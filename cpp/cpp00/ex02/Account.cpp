@@ -6,7 +6,7 @@
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:31:47 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/04/28 19:09:24 by tvasilev         ###   ########.fr       */
+/*   Updated: 2023/05/28 16:02:46 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	Account::makeDeposit( int deposit )
 
 bool	Account::makeWithdrawal( int withdrawal )
 {
-	_nbWithdrawals++;
 	_displayTimestamp();
 	if (withdrawal > _amount)
 	{
@@ -92,9 +91,10 @@ bool	Account::makeWithdrawal( int withdrawal )
 		<< ";withdrawal:refused" << std::endl;
 		return (false);
 	}
+	_nbWithdrawals++;
 	std::cout << " index:" << _accountIndex << ";p_amount:" << _amount
 	<< ";withdrawal:" << withdrawal << ";amount:" << _amount - withdrawal
-	<< ";nb_deposits:" << _nbWithdrawals
+	<< ";nb_withdrawals:" << _nbWithdrawals
 	<< std::endl;
 	_amount -= withdrawal;
 	_totalAmount -= withdrawal;
