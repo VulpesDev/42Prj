@@ -6,13 +6,13 @@
 #    By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 16:50:22 by tvasilev          #+#    #+#              #
-#    Updated: 2023/05/02 17:57:30 by tvasilev         ###   ########.fr        #
+#    Updated: 2023/06/20 12:39:45 by tvasilev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = c++
 
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -std=c++98
 
 NAME = zombie
 
@@ -23,10 +23,10 @@ OBJ = $(SRC:.cpp=.o)
 all: $(NAME)
 
 .cpp.o:
-	$(CC) -g3 -c $< -o $@
+	$(CC) $(CFLAGS) -g3 -c $< -o $@
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(OBJ) -o $(NAME)
 
 clean:
 	-rm -f $(OBJ)
@@ -35,8 +35,3 @@ fclean: clean
 	-rm -f $(NAME)
 
 re: fclean all
-for (int i = 0; i < N; i++)
-    {
-        horde[i] = Zombie(name);
-        horde[i].announce();
-    }
