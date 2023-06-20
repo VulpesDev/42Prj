@@ -6,7 +6,7 @@
 #    By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/08 16:50:22 by tvasilev          #+#    #+#              #
-#    Updated: 2023/06/20 12:39:45 by tvasilev         ###   ########.fr        #
+#    Updated: 2023/06/20 12:50:14 by tvasilev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS = -Wall -Werror -Wextra -std=c++98
 
 NAME = zombie
 
-SRC = newZombie.cpp randomChump.cpp Zombie.cpp
+SRC = newZombie.cpp randomChump.cpp Zombie.cpp main.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

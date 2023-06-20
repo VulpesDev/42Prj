@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   newZombie.cpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tvasilev <tvasilev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/29 14:21:05 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/06/20 12:48:32 by tvasilev         ###   ########.fr       */
+/*   Created: 2023/06/20 12:49:12 by tvasilev          #+#    #+#             */
+/*   Updated: 2023/06/20 12:55:31 by tvasilev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-
-class Zombie	*newZombie(std::string name)
+int	main(void)
 {
-	Zombie	*result;
-
-	result = new Zombie(name);
-	return (result);
-};
+	Zombie	z1("John");
+	Zombie	*z2;
+	z1.announce();
+	z2 = newZombie("Tyler");
+	z2->announce();
+	delete (z2);
+	randomChump("Rey");
+	return (0);
+}
